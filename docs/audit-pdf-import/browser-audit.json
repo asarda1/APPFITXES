@@ -1,0 +1,7 @@
+{
+  "checks": [
+    "tecnica: multipage PDF imported with rows, media and editable data; invalid, wrong-format/type and storage failures preserve the sheet; reload recovery works",
+    "mantenimiento: multipage PDF imported with rows, media and editable data; invalid, wrong-format/type and storage failures preserve the sheet; reload recovery works"
+  ],
+  "errors": []
+}

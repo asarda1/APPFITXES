@@ -1,0 +1,991 @@
+{
+  "formato": "RP-MAINTENANCE-TEMPLATES-V1",
+  "version": 1,
+  "fuente": "docs/plantillas-genericas-mantenimiento/*.pdf",
+  "plantillas": [
+    {
+      "id": "bulldozer",
+      "nombre": "Bulldozer",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "BULLDOZER",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "BULLDOZER",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar hoja, cuchillas, cantoneras, bulones y elementos de desgaste.", "realizada": false },
+          { "descripcion": "3- Comprobar cilindros, mangueras y sistema hidráulico.", "realizada": false },
+          { "descripcion": "4- Revisar cadenas, rodillos, ruedas guía, ruedas motrices y tensión.", "realizada": false },
+          { "descripcion": "5- Comprobar mandos finales y posibles fugas.", "realizada": false },
+          { "descripcion": "6- Engrasar articulaciones, bulones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar ripper y sus elementos de desgaste si está equipado.", "realizada": false },
+          { "descripcion": "8- Comprobar filtros, radiadores y sistema de refrigeración.", "realizada": false },
+          { "descripcion": "9- Revisar alumbrado, batería, avisadores y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "caja-basculante-grua",
+      "nombre": "Caja basculante con grúa",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "CAJA BASCULANTE CON GRÚA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "CAJA BASCULANTE CON GRÚA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema hidráulico de basculación y de la grúa.", "realizada": false },
+          { "descripcion": "3- Comprobar caja, bisagras, cierres, cilindro de basculación y estructura.", "realizada": false },
+          { "descripcion": "4- Revisar pluma, extensiones, bulones y articulaciones de la grúa.", "realizada": false },
+          { "descripcion": "5- Comprobar estabilizadores, apoyos y sistemas de bloqueo.", "realizada": false },
+          { "descripcion": "6- Engrasar bisagras, articulaciones, corona y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Comprobar gancho, limitadores y dispositivos de seguridad.", "realizada": false },
+          { "descripcion": "8- Revisar frenos, suspensión, dirección, neumáticos y alumbrado.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "camion-barredora",
+      "nombre": "Camión barredora",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "CAMIÓN BARREDORA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "CAMIÓN BARREDORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar cepillos, desgaste, regulación y fijaciones.", "realizada": false },
+          { "descripcion": "3- Comprobar sistema de aspiración, conductos y turbina.", "realizada": false },
+          { "descripcion": "4- Limpiar y revisar filtros del sistema de aspiración.", "realizada": false },
+          { "descripcion": "5- Comprobar sistema de agua, depósito, bomba y boquillas.", "realizada": false },
+          { "descripcion": "6- Revisar sistema hidráulico, mangueras y cilindros.", "realizada": false },
+          { "descripcion": "7- Engrasar articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "8- Revisar frenos, neumáticos, dirección y suspensión.", "realizada": false },
+          { "descripcion": "9- Comprobar alumbrado, señalización y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro sistema aspiración", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "camion-banera",
+      "nombre": "Camión con bañera",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "CAMIÓN CON BAÑERA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "CAMIÓN CON BAÑERA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema de frenos, dirección, suspensión y ejes.", "realizada": false },
+          { "descripcion": "3- Comprobar neumáticos, presiones, desgaste y fijación de ruedas.", "realizada": false },
+          { "descripcion": "4- Revisar sistema hidráulico de basculación, bomba, mangueras y cilindro.", "realizada": false },
+          { "descripcion": "5- Comprobar bañera, bisagras, cierres y estructura.", "realizada": false },
+          { "descripcion": "6- Engrasar articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar alumbrado, batería y señalización.", "realizada": false },
+          { "descripcion": "8- Comprobar filtros y sustituir según necesidad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "camion-pluma",
+      "nombre": "Camión pluma",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "CAMIÓN PLUMA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "CAMIÓN PLUMA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema hidráulico de la grúa, mangueras, racores y cilindros.", "realizada": false },
+          { "descripcion": "3- Comprobar pluma, extensiones, articulaciones, bulones y soldaduras.", "realizada": false },
+          { "descripcion": "4- Revisar estabilizadores, apoyos y sistemas de bloqueo.", "realizada": false },
+          { "descripcion": "5- Engrasar articulaciones, corona y puntos de lubricación de la grúa.", "realizada": false },
+          { "descripcion": "6- Comprobar gancho, cables, limitadores y dispositivos de seguridad.", "realizada": false },
+          { "descripcion": "7- Revisar frenos, suspensión, dirección, ejes y neumáticos.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, batería, señalización y mandos de la grúa.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "cisterna-agua",
+      "nombre": "Cisterna de agua",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "CISTERNA DE AGUA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "CISTERNA DE AGUA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Revisar estado general de la cisterna, soportes y anclajes.", "realizada": false },
+          { "descripcion": "2- Comprobar bomba de agua, válvulas, tuberías y conexiones.", "realizada": false },
+          { "descripcion": "3- Revisar barra de riego, boquillas y aspersores.", "realizada": false },
+          { "descripcion": "4- Limpiar filtros y comprobar el circuito de agua.", "realizada": false },
+          { "descripcion": "5- Revisar sistema hidráulico, mangueras y posibles fugas.", "realizada": false },
+          { "descripcion": "6- Engrasar bomba, articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Comprobar frenos, suspensión, dirección y neumáticos.", "realizada": false },
+          { "descripcion": "8- Revisar alumbrado, señalización y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Filtro circuito de agua", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "cisterna-emulsion",
+      "nombre": "Cisterna de emulsión",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "CISTERNA DE EMULSIÓN",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "CISTERNA DE EMULSIÓN",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Revisar estado general de la cisterna, soportes y anclajes.", "realizada": false },
+          { "descripcion": "2- Comprobar bomba de emulsión, válvulas, tuberías y conexiones.", "realizada": false },
+          { "descripcion": "3- Revisar barras de riego, boquillas y distribución uniforme.", "realizada": false },
+          { "descripcion": "4- Limpiar filtros, tuberías y circuito de emulsión.", "realizada": false },
+          { "descripcion": "5- Comprobar sistema hidráulico, mangueras y posibles fugas.", "realizada": false },
+          { "descripcion": "6- Revisar sistema de calentamiento si está equipado.", "realizada": false },
+          { "descripcion": "7- Engrasar bomba, articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "8- Comprobar frenos, neumáticos, alumbrado y señalización.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Filtro circuito emulsión", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "compresor-tierra",
+      "nombre": "Compresor de tierra",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "COMPRESOR DE TIERRA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "COMPRESOR DE TIERRA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de aceite.", "realizada": false },
+          { "descripcion": "2- Revisar filtro de aire y limpiar o sustituir según necesidad.", "realizada": false },
+          { "descripcion": "3- Comprobar filtro de aceite y separador de aire/aceite.", "realizada": false },
+          { "descripcion": "4- Revisar mangueras, racores, válvulas y conexiones.", "realizada": false },
+          { "descripcion": "5- Limpiar radiadores y comprobar sistema de refrigeración.", "realizada": false },
+          { "descripcion": "6- Revisar ruedas, chasis y elementos de apoyo o transporte.", "realizada": false },
+          { "descripcion": "7- Comprobar presión de trabajo y dispositivos de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite compresor", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro aire", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro aceite", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Separador aire/aceite", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "compresor-neumatico",
+      "nombre": "Compresor neumático",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "COMPRESOR NEUMÁTICO",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "COMPRESOR NEUMÁTICO",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de aceite.", "realizada": false },
+          { "descripcion": "2- Revisar filtro de aire y limpiar o sustituir según necesidad.", "realizada": false },
+          { "descripcion": "3- Comprobar filtro de aceite y separador de aire/aceite.", "realizada": false },
+          { "descripcion": "4- Revisar mangueras, racores, válvulas y posibles fugas de aire.", "realizada": false },
+          { "descripcion": "5- Comprobar radiadores y limpiar el sistema de refrigeración.", "realizada": false },
+          { "descripcion": "6- Revisar presión de trabajo y dispositivos de seguridad.", "realizada": false },
+          { "descripcion": "7- Comprobar batería, conexiones y sistema eléctrico.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite compresor", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro aire", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro aceite", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Separador aire/aceite", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "dumper",
+      "nombre": "Dúmper",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "DÚMPER",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "DÚMPER",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema de frenos, dirección y suspensión.", "realizada": false },
+          { "descripcion": "3- Comprobar neumáticos, presiones y estado de las ruedas.", "realizada": false },
+          { "descripcion": "4- Revisar sistema hidráulico de basculación, cilindros y mangueras.", "realizada": false },
+          { "descripcion": "5- Comprobar caja de carga, articulaciones, bulones y estructura.", "realizada": false },
+          { "descripcion": "6- Engrasar articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar filtros y sustituir según necesidad.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, avisadores, batería y elementos de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "excavadora",
+      "nombre": "Excavadora",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "EXCAVADORA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "EXCAVADORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de aceites, refrigerante y combustible.", "realizada": false },
+          { "descripcion": "2- Revisar el sistema hidráulico, mangueras, racores y cilindros.", "realizada": false },
+          { "descripcion": "3- Comprobar el estado del implemento, bulones, casquillos y enganche.", "realizada": false },
+          { "descripcion": "4- Engrasar los puntos de articulación y el equipo de trabajo.", "realizada": false },
+          { "descripcion": "5- Revisar el tren de rodaje, cadenas, rodillos y tensión.", "realizada": false },
+          { "descripcion": "6- Comprobar filtros de aire, combustible e hidráulico y sustituir según necesidad.", "realizada": false },
+          { "descripcion": "7- Revisar alumbrado, señalización, batería y sistema eléctrico.", "realizada": false },
+          { "descripcion": "8- Realizar inspección general de estructura, tornillería y elementos de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro aire", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "extendedora",
+      "nombre": "Extendedora",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "EXTENDEDORA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "EXTENDEDORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar el sistema hidráulico, mangueras, bombas y cilindros.", "realizada": false },
+          { "descripcion": "3- Limpiar y comprobar tolva, alimentadores y cintas transportadoras.", "realizada": false },
+          { "descripcion": "4- Revisar sinfines, paletas y elementos de desgaste.", "realizada": false },
+          { "descripcion": "5- Comprobar regla, sistemas de nivelación y calefacción.", "realizada": false },
+          { "descripcion": "6- Engrasar cadenas, rodamientos y puntos de articulación.", "realizada": false },
+          { "descripcion": "7- Revisar tren de rodaje o neumáticos y sistema de traslación.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, mandos, sensores y elementos de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "fresadora",
+      "nombre": "Fresadora",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "FRESADORA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "FRESADORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar tambor de fresado, picas, portapicas y elementos de desgaste.", "realizada": false },
+          { "descripcion": "3- Comprobar cintas transportadoras, rodillos y tensado.", "realizada": false },
+          { "descripcion": "4- Revisar sistema hidráulico, mangueras, bombas y cilindros.", "realizada": false },
+          { "descripcion": "5- Revisar sistema de agua, bomba, filtros y boquillas.", "realizada": false },
+          { "descripcion": "6- Engrasar rodamientos, articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Comprobar tren de rodaje, patines y sistema de traslación.", "realizada": false },
+          { "descripcion": "8- Revisar sensores, nivelación, alumbrado y elementos de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro sistema de agua", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "gondola",
+      "nombre": "Góndola",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "GÓNDOLA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "GÓNDOLA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar suspensión, ejes y posibles holguras.", "realizada": false },
+          { "descripcion": "2- Comprobar y apretar las tuercas de rueda.", "realizada": false },
+          { "descripcion": "3- Revisar neumáticos, presiones y desgaste.", "realizada": false },
+          { "descripcion": "4- Comprobar rodamientos y bujes de rueda.", "realizada": false },
+          { "descripcion": "5- Revisar sistema de frenos, tuberías y depósitos de aire.", "realizada": false },
+          { "descripcion": "6- Comprobar king pin, apoyos y elementos de acoplamiento.", "realizada": false },
+          { "descripcion": "7- Revisar rampas, sistema hidráulico, mangueras y cilindros.", "realizada": false },
+          { "descripcion": "8- Engrasar articulaciones, rampas y puntos de lubricación.", "realizada": false },
+          { "descripcion": "9- Comprobar alumbrado, conexiones eléctricas y señalización.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "hincado-postes",
+      "nombre": "Hincado de postes",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "HINCADO DE POSTES",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "HINCADO DE POSTES",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar martillo, cabezal de hinca y elementos de desgaste.", "realizada": false },
+          { "descripcion": "3- Comprobar mástil, guías, fijaciones y soldaduras.", "realizada": false },
+          { "descripcion": "4- Revisar sistema hidráulico, mangueras, racores y cilindros.", "realizada": false },
+          { "descripcion": "5- Engrasar guías, articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "6- Revisar tren de rodaje o neumáticos y sistema de traslación.", "realizada": false },
+          { "descripcion": "7- Comprobar mandos, parada de emergencia y protecciones.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "minicargadora",
+      "nombre": "Minicargadora",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "MINICARGADORA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "MINICARGADORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema hidráulico, mangueras, racores y cilindros.", "realizada": false },
+          { "descripcion": "3- Comprobar implemento, enganche rápido, bulones y casquillos.", "realizada": false },
+          { "descripcion": "4- Engrasar brazos, articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "5- Comprobar neumáticos, ruedas y fijaciones.", "realizada": false },
+          { "descripcion": "6- Revisar transmisión, cadenas y sistema de traslación.", "realizada": false },
+          { "descripcion": "7- Revisar filtros y sustituir según necesidad.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, batería, mandos y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "motoniveladora",
+      "nombre": "Motoniveladora",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "MOTONIVELADORA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "MOTONIVELADORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar hoja, cuchillas, círculo y elementos de desgaste.", "realizada": false },
+          { "descripcion": "3- Comprobar cilindros, mangueras y sistema hidráulico.", "realizada": false },
+          { "descripcion": "4- Revisar dirección, articulación, transmisión y ejes.", "realizada": false },
+          { "descripcion": "5- Comprobar neumáticos, presiones y fijación de ruedas.", "realizada": false },
+          { "descripcion": "6- Engrasar círculo, articulaciones, bulones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar filtros y sustituir según necesidad.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, mandos y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "pala-cargadora",
+      "nombre": "Pala cargadora",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "PALA CARGADORA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "PALA CARGADORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema hidráulico, mangueras, racores y cilindros.", "realizada": false },
+          { "descripcion": "3- Comprobar cuchara, dientes, enganche, bulones y casquillos.", "realizada": false },
+          { "descripcion": "4- Engrasar articulación central y puntos de engrase del equipo de trabajo.", "realizada": false },
+          { "descripcion": "5- Revisar ejes, transmisión, dirección y posibles holguras.", "realizada": false },
+          { "descripcion": "6- Comprobar presión, desgaste y estado de neumáticos.", "realizada": false },
+          { "descripcion": "7- Revisar filtros y sustituir según necesidad.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, batería, avisadores y elementos de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro aire", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "precribador",
+      "nombre": "Precribador",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "PRECRIBADOR",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "PRECRIBADOR",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar parrilla o cribas y elementos de desgaste.", "realizada": false },
+          { "descripcion": "3- Comprobar alimentador, cintas, rodillos y tensado.", "realizada": false },
+          { "descripcion": "4- Revisar sistema vibratorio, rodamientos y fijaciones.", "realizada": false },
+          { "descripcion": "5- Comprobar sistema hidráulico, mangueras y conexiones.", "realizada": false },
+          { "descripcion": "6- Engrasar rodamientos y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar tren de rodaje y estructura general.", "realizada": false },
+          { "descripcion": "8- Comprobar paradas de emergencia y protecciones.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "retro-mixta",
+      "nombre": "Retro mixta",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "RETRO MIXTA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "RETRO MIXTA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema hidráulico, mangueras, racores y cilindros.", "realizada": false },
+          { "descripcion": "3- Comprobar cuchara delantera y equipo retro, bulones y casquillos.", "realizada": false },
+          { "descripcion": "4- Engrasar brazos, estabilizadores y puntos de articulación.", "realizada": false },
+          { "descripcion": "5- Revisar estabilizadores, apoyos y mecanismos de bloqueo.", "realizada": false },
+          { "descripcion": "6- Comprobar neumáticos, ejes, transmisión, dirección y frenos.", "realizada": false },
+          { "descripcion": "7- Revisar filtros y sustituir según necesidad.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, avisadores y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "retroexcavadora",
+      "nombre": "Retroexcavadora",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "RETROEXCAVADORA",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "RETROEXCAVADORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema hidráulico, mangueras, racores y cilindros.", "realizada": false },
+          { "descripcion": "3- Comprobar brazo, balancín, cuchara, bulones y casquillos.", "realizada": false },
+          { "descripcion": "4- Engrasar articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "5- Revisar tren de rodaje o neumáticos y sistema de traslación.", "realizada": false },
+          { "descripcion": "6- Comprobar transmisión, ejes, dirección y frenos.", "realizada": false },
+          { "descripcion": "7- Revisar filtros y sustituir según necesidad.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, avisadores y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro hidráulico", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "rodillo-tierras",
+      "nombre": "Rodillo de tierras",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "RODILLO DE TIERRAS",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "RODILLO DE TIERRAS",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar tambor, rascadores y sistema de vibración.", "realizada": false },
+          { "descripcion": "3- Comprobar neumáticos, presiones y fijaciones.", "realizada": false },
+          { "descripcion": "4- Revisar sistema hidráulico, mangueras y conexiones.", "realizada": false },
+          { "descripcion": "5- Comprobar articulación central, dirección y posibles holguras.", "realizada": false },
+          { "descripcion": "6- Engrasar articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar alumbrado, avisadores y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "rodillo-mixto",
+      "nombre": "Rodillo mixto",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "RODILLO MIXTO",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "RODILLO MIXTO",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar tambor, rascadores y sistema de vibración.", "realizada": false },
+          { "descripcion": "3- Comprobar neumáticos, presiones y desgaste.", "realizada": false },
+          { "descripcion": "4- Revisar sistema de agua, bomba, filtros y boquillas.", "realizada": false },
+          { "descripcion": "5- Comprobar sistema hidráulico, dirección y articulación central.", "realizada": false },
+          { "descripcion": "6- Engrasar articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar alumbrado, avisadores y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro sistema de agua", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "rodillo-tandem",
+      "nombre": "Rodillo tándem",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "RODILLO TÁNDEM",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "RODILLO TÁNDEM",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar tambores, rascadores y sistema de vibración.", "realizada": false },
+          { "descripcion": "3- Comprobar sistema de agua, depósito, bomba, filtros y boquillas.", "realizada": false },
+          { "descripcion": "4- Revisar sistema hidráulico, mangueras y conexiones.", "realizada": false },
+          { "descripcion": "5- Comprobar dirección articulada y posibles holguras.", "realizada": false },
+          { "descripcion": "6- Engrasar articulaciones y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar alumbrado, avisadores y sistemas de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Filtro sistema de agua", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "tractor",
+      "nombre": "Tractor",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "",
+      "tipoMaquina": "TRACTOR",
+      "data": {
+        "mantenimiento": "",
+        "maquina": {
+          "tipoMaquina": "TRACTOR",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar transmisión, ejes, reductores y toma de fuerza.", "realizada": false },
+          { "descripcion": "3- Comprobar sistema hidráulico, conexiones y brazos del elevador.", "realizada": false },
+          { "descripcion": "4- Revisar dirección, frenos y suspensión.", "realizada": false },
+          { "descripcion": "5- Comprobar neumáticos, presión, desgaste y fijación de ruedas.", "realizada": false },
+          { "descripcion": "6- Engrasar articulaciones, brazos y puntos de lubricación.", "realizada": false },
+          { "descripcion": "7- Revisar filtros y sustituir según necesidad.", "realizada": false },
+          { "descripcion": "8- Comprobar alumbrado, batería y elementos de seguridad.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Aceite hidráulico", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Aceite transmisión", "cantidadUnidad": "Según necesidad" },
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    },
+    {
+      "id": "tractora-60000-km",
+      "nombre": "Tractora - 60.000 km",
+      "tipoFicha": "mantenimiento",
+      "builtin": true,
+      "mantenimiento": "60.000 km",
+      "tipoMaquina": "TRACTORA",
+      "data": {
+        "mantenimiento": "60.000 km",
+        "maquina": {
+          "tipoMaquina": "TRACTORA",
+          "marcaModelo": "",
+          "codigoInterno": "",
+          "matricula": "",
+          "bastidorSerie": "",
+          "horasTrabajoKilometros": ""
+        },
+        "operaciones": [
+          { "descripcion": "1- Comprobar niveles y posibles fugas de fluidos.", "realizada": false },
+          { "descripcion": "2- Revisar sistema de frenos, dirección y suspensión.", "realizada": false },
+          { "descripcion": "3- Comprobar neumáticos, presión, desgaste y fijación de ruedas.", "realizada": false },
+          { "descripcion": "4- Revisar transmisión, ejes y posibles fugas.", "realizada": false },
+          { "descripcion": "5- Comprobar quinta rueda, cierre, bloqueo y desgaste.", "realizada": false },
+          { "descripcion": "6- Engrasar quinta rueda y puntos de lubricación del vehículo.", "realizada": false },
+          { "descripcion": "7- Comprobar conexiones neumáticas y eléctricas del semirremolque.", "realizada": false },
+          { "descripcion": "8- Revisar alumbrado, batería y señalización.", "realizada": false }
+        ],
+        "filtrosMateriales": [
+          { "tipo": "Grasa", "cantidadUnidad": "Según necesidad" }
+        ],
+        "observacionesGenerales": "",
+        "responsable": "Eduardo Noguero Modrego",
+        "fecha": "",
+        "firma": ""
+      }
+    }
+  ]
+}

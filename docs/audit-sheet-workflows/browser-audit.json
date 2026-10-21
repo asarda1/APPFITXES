@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "tecnica: existing data replaced in one import click with no intermediate summary",
+    "tecnica: invalid JSON preserves data; imported data survives reload and recovery",
+    "Maintenance direct row buttons target the cursor table exactly once",
+    "mantenimiento: existing data replaced in one import click with no intermediate summary",
+    "mantenimiento: invalid JSON preserves data; imported data survives reload and recovery",
+    "Maintenance PDF action opens print once and excludes editing controls"
+  ],
+  "errors": [],
+  "dialogs": []
+}

@@ -1,0 +1,1026 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fichas - Ficha de mantenimiento</title>
+  <style>
+    :root{
+      --ral-1007: #f2a900;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --border: rgba(242, 169, 0, 0.30);
+    }
+
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #e6e6e6;
+      color: var(--ink);
+    }
+
+    .pantalla{
+      min-height: 100vh;
+      padding: 0 0 20px;
+      box-sizing: border-box;
+    }
+
+    .barra-ficha{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 18px 14px;
+      width: calc(100% - 36px);
+      max-width: none;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 20px rgba(2,6,23,0.08);
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+    }
+
+    .acciones-ficha{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    button{
+      border: 1px solid rgba(15, 23, 42, 0.15);
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-weight: 600;
+    }
+    button:hover{ filter: brightness(0.98); }
+
+    .btn-primary{
+      border-color: rgba(242, 169, 0, 0.55);
+      box-shadow: 0 1px 0 rgba(242,169,0,0.10) inset;
+    }
+
+    .page{
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #fff;
+      padding: 15mm;
+      box-sizing: border-box;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    /* Cabecera para impresión */
+    .print-header{
+      position: relative;
+    }
+
+    .print-spacer{
+      display: none;
+    }
+
+    .print-footer{
+      display: none;
+      font-size: 11px;
+      color: #111827;
+    }
+
+    .marca-agua{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      opacity: 0.25;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page > *:not(.marca-agua):not(.rp-page-number){
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .header-title{
+      font-size: 14px;
+      font-weight: 800;
+      display:flex;
+      align-items:center;
+      gap: 6px;
+      flex-wrap: nowrap;
+    }
+
+    .brand{
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--ral-1007);
+      letter-spacing: .2px;
+      font-family: "Aller", Arial, Helvetica, sans-serif;
+    }
+
+    .interval-wrap{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 6px;
+    }
+
+    #tipoMantenimientoPrint{
+      display: none;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 0;
+      margin: 0;
+      color: #000;
+    }
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td{
+      border: 1px solid #000;
+      padding: 6px;
+      font-size: 13px;
+      vertical-align: top;
+    }
+    th{
+      background: #f5f5f5;
+      white-space: nowrap;
+      width: 1%;
+    }
+
+    input, select, textarea{
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 13px;
+      padding: 4px 6px;
+      border: 1px solid #000;
+      background: transparent;
+      font-family: inherit;
+      max-width: 100%;
+    }
+    textarea{
+      resize: none;
+      overflow: hidden;
+      min-height: 28px;
+      line-height: 1.2;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .firma-box{
+      position: relative;
+      width: 100%;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+
+    #firmaImg{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: none;
+    }
+
+    #firmaInput{
+      display: none;
+    }
+
+    .firma-controls{
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      right: 6px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .firma-controls button{
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .section-title{
+      background: var(--ral-1007);
+      font-weight: 800;
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: .2px;
+    }
+
+    /* En la propuesta taller, no mostramos columna de borrado por fila */
+    button.delete-btn{ display:none !important; }
+    td.delete-cell, th.delete-cell{ display:none !important; }
+
+    .check{
+      width: 52px;
+      text-align:center;
+      vertical-align: middle;
+    }
+
+    .delete-cell{
+      width: 46px;
+      text-align:center;
+      vertical-align: middle;
+    }
+
+    .delete-btn{
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.25);
+      background: #fff;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    #operaciones tbody tr.is-active-row > td,
+    #filtrosMateriales tbody tr.is-active-row > td{
+      background: rgba(242, 169, 0, 0.08);
+    }
+
+    #operaciones tbody tr.is-selected-row > td,
+    #filtrosMateriales tbody tr.is-selected-row > td{
+      background: rgba(242, 169, 0, 0.18);
+    }
+
+    #operaciones tbody tr.is-selected-row textarea,
+    #operaciones tbody tr.is-selected-row input,
+    #filtrosMateriales tbody tr.is-selected-row textarea,
+    #filtrosMateriales tbody tr.is-selected-row input{
+      background: rgba(242, 169, 0, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(242, 169, 0, 0.45);
+    }
+
+    .texto-operacion{
+      width: 100%;
+      min-height: 28px;
+      max-height: none;
+      resize: none;
+      overflow-y: hidden;
+      line-height: 1.3;
+    }
+    textarea.material-tipo{
+      max-height: none;
+      resize: none;
+      overflow-y: hidden;
+      line-height: 1.3;
+    }
+
+    /* APP FITXES - FEATURE - PAGE NUMBERING */
+    .rp-page-number{
+      position: absolute;
+      right: 6mm;
+      bottom: 6mm;
+      font-size: 9px;
+      color: #374151;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1;
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .footer{
+      margin-top: 12px;
+      font-size: 11px;
+      opacity: 0.9;
+      text-align: center;
+    }
+
+    :root{
+      /* Se recalcula antes de imprimir para reservar espacio bajo la cabecera fija */
+      --print-header-h: 0px;
+    }
+
+    @media print{
+      /* APP FITXES - FEATURE BLOCK 2 - PRINT PREVIEW */
+      .no-print{ display:none !important; }
+      html, body{
+        background:#fff;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      #pantalla-ficha{ padding: 0 !important; }
+      .barra-ficha{ display:none !important; }
+      @page{ size: A4; margin: 10mm; }
+      .page{
+        box-shadow: none !important;
+        margin: 0 auto !important;
+        border-radius: 0 !important;
+        padding: 10mm !important;
+      }
+
+      /* Paginación JS: se generan páginas A4 separadas para repetir cabecera sin solapes */
+      body.js-paginated #pantalla-ficha > .page{ display: none !important; }
+      body.js-paginated #printPages{ display: block !important; }
+      #printPages{ display: none; }
+
+      /* Pie de página simple con número de página */
+      .print-footer{
+        display: block !important;
+        position: fixed;
+        bottom: 8mm;
+        left: 15mm;
+        right: 15mm;
+        z-index: 5;
+        text-align: right;
+      }
+      .print-footer{ display:none !important; }
+ 
+      /* En PDF/impresión no debe verse el contorno ni la flecha del selector */
+      #tipoMantenimiento{ display:none !important; }
+      #tipoMantenimientoPrint{ display:inline !important; }
+      .firma-controls{ display:none !important; }
+      th{
+        background: #f5f5f5 !important;
+      }
+      td{
+        background: transparent !important;
+      }
+      .section-title{
+        background: var(--ral-1007) !important;
+        color: #000 !important;
+      }
+    }
+
+    .delete-cell{ display:none !important; }
+  </style>
+</head>
+<body>
+  <div id="pantalla-ficha" class="pantalla">
+    <div class="barra-ficha">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="font-weight:900;">Creación de fichas de mantenimiento</div>
+      </div>
+      <div class="acciones-ficha">
+        <button type="button" id="btnAddFila" onclick="addActiveMaintenanceRow()">Añadir fila</button>
+        <button type="button" id="btnRemoveFila" onclick="removeActiveMaintenanceRow()">Eliminar fila</button>
+        <button type="button" onclick="guardarPDF()">Guardar PDF</button>
+      </div>
+    </div>
+
+    <div class="page">
+      <img src="logo_romero_polo.png" class="marca-agua" alt="">
+
+      <div id="printFooter" class="print-footer" data-total-pages="1"></div>
+
+      <div id="printHeader" class="print-header">
+      <div class="header-row">
+        <div class="header-title">
+          Mantenimiento
+          <span class="interval-wrap">
+            <input id="tipoMantenimiento" value="Anual" aria-label="Tipo de mantenimiento" onchange="cargarMantenimiento(); syncTipoMantenimientoPrint();" oninput="syncTipoMantenimientoPrint();">
+            <span id="tipoMantenimientoPrint"></span>
+          </span>
+        </div>
+        <div class="brand">Romero Polo</div>
+      </div>
+
+      <table>
+        <tr>
+          <th>MÁQUINA</th>
+		          <td><textarea id="tipoMaquina" rows="1"></textarea></td>
+          <th>MARCA Y MODELO</th>
+	          <td><textarea id="marcaModelo" rows="1"></textarea></td>
+        </tr>
+        <tr>
+          <th>CÓDIGO / Nº INTERNO</th>
+	          <td>
+	            <input id="codigoInterno" list="codigoInternoList" onchange="rellenarDesdeCodigo()" />
+	            <datalist id="codigoInternoList"></datalist>
+	          </td>
+          <th>MATRÍCULA</th>
+	          <td><textarea id="matricula" rows="1"></textarea></td>
+        </tr>
+        <tr>
+          <th>Nº BASTIDOR / SERIE</th>
+	          <td><textarea id="bastidor" rows="1"></textarea></td>
+          <th>HORAS DE TRABAJO/KILÓMETROS</th>
+	          <td><textarea id="horasKm" rows="1"></textarea></td>
+        </tr>
+      </table>
+      </div>
+
+      <div id="printSpacer" class="print-spacer"></div>
+
+      <table id="operaciones">
+        <thead>
+          <tr><td colspan="3" class="section-title">TIPO DE OPERACIÓN</td></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <textarea class="texto-operacion" placeholder="Descripción de la operación" oninput="autoResize(this)"></textarea>
+            </td>
+            <td class="check"><input type="checkbox"></td>
+            <td class="delete-cell">
+              <button type="button" class="delete-btn" onclick="deleteOperacion(this)">✖</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table id="filtrosMateriales">
+        <thead>
+          <tr><td colspan="3" class="section-title">FILTRO Y MATERIALES</td></tr>
+          <tr>
+            <th style="width:70%;">Tipo de filtro / material</th>
+            <th style="width:30%;">Cantidad / unidad</th>
+            <th class="delete-cell"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><textarea class="material-tipo" placeholder="Filtro / material" oninput="autoResize(this)"></textarea></td>
+            <td><textarea class="cantidad-unidad" rows="1" placeholder="Cantidad / unidad" oninput="autoResize(this)"></textarea></td>
+            <td class="delete-cell"><button type="button" class="delete-btn" onclick="deleteFiltroMaterial(this)">✖</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+
+      <div class="no-page-break">
+        <table>
+          <tr><td class="section-title">OBSERVACIONES GENERALES</td></tr>
+          <tr><td><textarea id="observacionesGenerales" oninput="autoResize(this)"></textarea></td></tr>
+        </table>
+
+        <div style="margin:10px 0 10px;text-align:center;font-size:12px;font-weight:bold;color:var(--ral-1007);">
+          Las operaciones se han realizado siguiendo las especificaciones del fabricante.
+        </div>
+
+	        <table>
+	          <tr>
+	            <th>RESPONSABLE</th>
+	            <td><textarea id="responsable" rows="1" placeholder="Nombre y apellidos" oninput="autoResize(this)"></textarea></td>
+	            <th>FECHA</th>
+	            <td><input id="fechaFirma" type="date"></td>
+	          </tr>
+	          <tr>
+	            <th>FIRMA</th>
+	            <td colspan="3" style="height:120px; vertical-align:top;">
+	              <div class="firma-box">
+	                <img id="firmaImg" alt="Firma" />
+	                <div class="firma-controls">
+	                  <input id="firmaInput" type="file" accept="image/*" />
+	                  <button type="button" onclick="seleccionarFirma()">Seleccionar firma</button>
+	                  <button type="button" onclick="quitarFirma()">Quitar firma</button>
+	                </div>
+	              </div>
+	            </td>
+	          </tr>
+	        </table>
+	      </div>
+
+      <div class="footer">
+        JOSÉ ANTONIO ROMERO POLO S.A. · CIF A25036880 · C/ Comerç, 2 · 25007 Lleida · Tel. 973 228 960
+      </div>
+    </div>
+
+    <div id="printPages"></div>
+  </div>
+
+  <!-- Datos compartidos con `propuesta_ui.html` (editar estos ficheros para que se actualicen ambos) -->
+  <script src="maquinaria_completa.js"></script>
+  <script src="mantenimientos.js"></script>
+  <script src="mantenimientos_modelos.js"></script>
+
+  <script>
+    function autoResize(textarea) {
+      if (!textarea) return;
+      textarea.style.height = "auto";
+      textarea.style.height = (textarea.scrollHeight || 0) + "px";
+    }
+
+    function syncTipoMantenimientoPrint() {
+      const field = document.getElementById("tipoMantenimiento");
+      const out = document.getElementById("tipoMantenimientoPrint");
+      if (!field || !out) return;
+      const text = field.value || "";
+      out.textContent = String(text || "").trim();
+    }
+
+    function preparePrintFooter() {
+      const footer = document.getElementById("printFooter");
+      const page = document.querySelector(".page");
+      const header = document.getElementById("printHeader");
+      const spacer = document.getElementById("printSpacer");
+      if (!footer || !page) return;
+      const pageHeight = page.getBoundingClientRect().height || 1;
+      const total = Math.max(1, Math.ceil(page.scrollHeight / pageHeight));
+      footer.setAttribute("data-total-pages", String(total));
+      if (header && spacer) {
+        const h = header.getBoundingClientRect().height || 0;
+        spacer.style.height = Math.max(40, Math.ceil(h)) + "px";
+      }
+    }
+
+    // La preparación de impresión se lanza desde el botón Guardar PDF.
+
+    function seleccionarFirma() {
+      const input = document.getElementById("firmaInput");
+      if (!input) return;
+      input.click();
+    }
+
+    function quitarFirma() {
+      const img = document.getElementById("firmaImg");
+      const input = document.getElementById("firmaInput");
+      if (img) {
+        img.removeAttribute("src");
+        img.style.display = "none";
+      }
+      if (input) input.value = "";
+    }
+
+    function handleFirmaFile(file) {
+      if (!file) return;
+      const img = document.getElementById("firmaImg");
+      if (!img) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        img.setAttribute("src", String(reader.result || ""));
+        img.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function addOperacion() {
+      const tbody = document.querySelector("#operaciones tbody");
+      if (!tbody) return;
+      const row = tbody.insertRow();
+      row.innerHTML = `
+        <td>
+          <textarea class="texto-operacion" placeholder="Descripción de la operación" oninput="autoResize(this)"></textarea>
+        </td>
+        <td class="check"><input type="checkbox"></td>
+        <td class="delete-cell">
+          <button type="button" class="delete-btn" onclick="deleteOperacion(this)">✖</button>
+        </td>
+      `;
+      setTimeout(() => row.querySelectorAll("textarea").forEach(autoResize), 0);
+    }
+
+    function addFiltroMaterialRow() {
+      const tbody = document.querySelector("#filtrosMateriales tbody");
+      if (!tbody) return;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><textarea class="material-tipo" placeholder="Filtro / material" oninput="autoResize(this)"></textarea></td>
+        <td><textarea class="cantidad-unidad" rows="1" placeholder="Cantidad / unidad" oninput="autoResize(this)"></textarea></td>
+        <td class="delete-cell"><button type="button" class="delete-btn" onclick="deleteFiltroMaterial(this)">✖</button></td>
+      `;
+      tbody.appendChild(tr);
+      setTimeout(() => tr.querySelectorAll("textarea.material-tipo").forEach(autoResize), 0);
+    }
+
+    function deleteOperacion(btn) {
+      btn?.closest("tr")?.remove();
+    }
+
+    function deleteFiltroMaterial(btn) {
+      btn?.closest("tr")?.remove();
+    }
+
+    function guardarPDF() {
+      try { preparePrintFooter(); } catch (err) { console.error("preparePrintFooter()", err); }
+      let paginationReady = false;
+      try { paginateForPrint(); } catch (err) {
+        console.error("paginateForPrint()", err);
+      }
+      try {
+        paginationReady = document.body.classList.contains("js-paginated");
+        if (!paginationReady) {
+          const printPages = document.getElementById("printPages");
+          paginationReady = Boolean(printPages && printPages.children.length);
+        }
+      } catch (_) {
+        paginationReady = false;
+      }
+      if (!paginationReady) {
+        try {
+          const printPages = document.getElementById("printPages");
+          if (printPages) printPages.innerHTML = "";
+          document.body.classList.remove("js-paginated");
+        } catch (_) {}
+      }
+      try { void document.body.offsetHeight; } catch (_) {}
+      try { window.focus(); } catch (_) {}
+      setTimeout(() => {
+        try { window.print(); } catch (err) { console.error("window.print()", err); }
+      }, 50);
+    }
+
+    function mmToPx(mm) {
+      // 1in = 25.4mm, 96px = 1in
+      return (mm * 96) / 25.4;
+    }
+
+    function formatDateForPrint(value) {
+      const raw = String(value || "").trim();
+      const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (iso) return iso[3] + "/" + iso[2] + "/" + iso[1];
+      return raw;
+    }
+
+    function replaceDateInputForPrint(root) {
+      const source = document.getElementById("fechaFirma");
+      const value = source && "value" in source ? source.value : "";
+      const input = root ? root.querySelector("#fechaFirma") : null;
+      if (!input) return;
+
+      const printedValue = value ? formatDateForPrint(value) : "";
+      const sourceWidth = source && typeof source.getBoundingClientRect === "function"
+        ? source.getBoundingClientRect().width
+        : 0;
+
+      input.setAttribute("type", "text");
+      input.setAttribute("readonly", "readonly");
+      input.setAttribute("placeholder", "");
+      input.setAttribute("value", printedValue);
+      input.value = printedValue;
+      input.style.width = "100%";
+      input.style.boxSizing = "border-box";
+      if (sourceWidth) input.style.minWidth = Math.ceil(sourceWidth) + "px";
+    }
+
+    function paginateForPrint() {
+      const sourcePage = document.querySelector(".page");
+      const printPages = document.getElementById("printPages");
+      const header = document.getElementById("printHeader");
+      const opsTable = document.getElementById("operaciones");
+      const matTable = document.getElementById("filtrosMateriales");
+      if (!sourcePage || !printPages || !header || !opsTable || !matTable) return;
+
+      // Limpiar paginación anterior
+      printPages.innerHTML = "";
+      document.body.classList.add("js-paginated");
+
+      // Medidas A4 con padding 10mm (igual que .page)
+      const pageInnerHeight = mmToPx(297 - 20); // 10mm arriba y 10mm abajo
+      const pageInnerWidth = mmToPx(210 - 20);
+
+      const watermark = sourcePage.querySelector(".marca-agua");
+      const headerCloneBase = header.cloneNode(true);
+      // En impresión se oculta select y se muestra el texto. Mantenerlo también en páginas generadas.
+      try { headerCloneBase.querySelector("#tipoMantenimiento")?.setAttribute("style", "display:none"); } catch (_) {}
+
+      const makePage = () => {
+        const page = document.createElement("div");
+        page.className = "page";
+        page.style.width = "210mm";
+        page.style.minHeight = "297mm";
+        page.style.padding = "10mm";
+        page.style.boxSizing = "border-box";
+        page.style.position = "relative";
+        page.style.overflow = "hidden";
+        page.style.background = "#fff";
+
+        if (watermark) {
+          page.appendChild(watermark.cloneNode(true));
+        }
+        const headerClone = headerCloneBase.cloneNode(true);
+        page.appendChild(headerClone);
+
+        const content = document.createElement("div");
+        content.className = "print-page-content";
+        page.appendChild(content);
+
+        printPages.appendChild(page);
+        return { page, content, headerEl: headerClone };
+      };
+
+      const createTableShell = (original) => {
+        const t = original.cloneNode(false);
+        // copiar atributos/id/clases mínimas para estilos
+        t.id = "";
+        t.className = original.className;
+        // thead
+        const thead = original.querySelector("thead");
+        if (thead) t.appendChild(thead.cloneNode(true));
+        const tbody = document.createElement("tbody");
+        t.appendChild(tbody);
+        return { table: t, tbody };
+      };
+
+      const opsRows = Array.from(opsTable.querySelectorAll("tbody tr"));
+      const matRows = Array.from(matTable.querySelectorAll("tbody tr"));
+
+      // Resto de bloques después de materiales (observaciones + responsable + footer)
+      const afterBlocks = [];
+      const obsWrapper = document.querySelector(".no-page-break");
+      if (obsWrapper) {
+        const obsClone = obsWrapper.cloneNode(true);
+        replaceDateInputForPrint(obsClone);
+        afterBlocks.push(obsClone);
+      }
+      const footer = sourcePage.querySelector(".footer");
+      if (footer) afterBlocks.push(footer.cloneNode(true));
+
+      let current = makePage();
+      const maxContentHeight = () => {
+        const headerH = current.headerEl.getBoundingClientRect().height || 0;
+        return pageInnerHeight - headerH;
+      };
+
+      const ensureFitsOrNewPage = () => {
+        const h = current.content.getBoundingClientRect().height || current.content.scrollHeight || 0;
+        if (h <= maxContentHeight()) return false;
+        current = makePage();
+        return true;
+      };
+
+      // Operaciones: paginar por filas
+      if (opsRows.length) {
+        let opsShell = createTableShell(opsTable);
+        current.content.appendChild(opsShell.table);
+        for (const row of opsRows) {
+          const cloneRow = row.cloneNode(true);
+          opsShell.tbody.appendChild(cloneRow);
+          // Si desborda, mover la fila a página nueva (sin duplicar)
+          if (ensureFitsOrNewPage()) {
+            try { cloneRow.remove(); } catch (_) {}
+            opsShell = createTableShell(opsTable);
+            current.content.appendChild(opsShell.table);
+            opsShell.tbody.appendChild(cloneRow);
+          }
+        }
+      }
+
+      // Materiales: paginar por filas
+      if (matRows.length) {
+        let matShell = createTableShell(matTable);
+        current.content.appendChild(matShell.table);
+        for (const row of matRows) {
+          const cloneRow = row.cloneNode(true);
+          matShell.tbody.appendChild(cloneRow);
+          if (ensureFitsOrNewPage()) {
+            try { cloneRow.remove(); } catch (_) {}
+            matShell = createTableShell(matTable);
+            current.content.appendChild(matShell.table);
+            matShell.tbody.appendChild(cloneRow);
+          }
+        }
+      }
+
+      // Bloques finales
+      for (const block of afterBlocks) {
+        current.content.appendChild(block);
+        if (ensureFitsOrNewPage()) current.content.appendChild(block);
+      }
+
+      // APP FITXES - FEATURE - PRINT PLACEHOLDER CLEANUP
+      // Los placeholders de edición (ej. "Escribir o seleccionar código...") no deben
+      // imprimirse cuando el campo está vacío. La celda mantiene su tamaño/borde.
+      clearPrintPlaceholders(printPages);
+
+      // APP FITXES - FEATURE - PAGE NUMBERING
+      // El total solo se conoce una vez generadas todas las páginas.
+      addPageNumbers(printPages);
+      printPages.querySelectorAll('.no-print, .firma-controls, input[type="file"], .delete-cell').forEach((el) => el.remove());
+    }
+
+    function clearPrintPlaceholders(root) {
+      if (!root) return;
+      root.querySelectorAll("[placeholder]").forEach((el) => {
+        const value = "value" in el ? el.value : (el.textContent || "");
+        if (!String(value || "").trim()) {
+          el.setAttribute("placeholder", "");
+        }
+      });
+    }
+
+    function addPageNumbers(printPages) {
+      const pages = Array.from(printPages.children).filter((el) => el.classList && el.classList.contains("page"));
+      const total = pages.length;
+      pages.forEach((pageEl, index) => {
+        const existing = pageEl.querySelector(":scope > .rp-page-number");
+        if (existing) existing.remove();
+        const badge = document.createElement("div");
+        badge.className = "rp-page-number";
+        badge.textContent = (index + 1) + "/" + total;
+        pageEl.appendChild(badge);
+      });
+    }
+
+    function cleanupAfterPrint() {
+      // Delay: en Edge/Windows el spool puede seguir leyendo el DOM justo después de cerrar el diálogo.
+      setTimeout(() => {
+        const printPages = document.getElementById("printPages");
+        if (printPages) printPages.innerHTML = "";
+        document.body.classList.remove("js-paginated");
+      }, 250);
+    }
+
+    window.addEventListener("afterprint", cleanupAfterPrint);
+
+    function limpiarDatosMaquina() {
+      document.getElementById("tipoMaquina").value = "";
+      document.getElementById("marcaModelo").value = "";
+      document.getElementById("bastidor").value = "";
+      document.getElementById("matricula").value = "";
+    }
+
+    function rellenarDesdeCodigo() {
+      const codigo = String(document.getElementById("codigoInterno")?.value || "").trim();
+      if (!codigo) {
+        limpiarDatosMaquina();
+        return;
+      }
+
+      if (typeof maquinaria === "undefined" || !maquinaria || !maquinaria[codigo]) {
+        limpiarDatosMaquina();
+        try { actualizarIntervalosMantenimientoPorCodigo(""); } catch (_) {}
+        return;
+      }
+
+      document.getElementById("tipoMaquina").value = maquinaria[codigo].maquina || "";
+      document.getElementById("marcaModelo").value = maquinaria[codigo].marcaModelo || "";
+      document.getElementById("bastidor").value = maquinaria[codigo].bastidor || "";
+      document.getElementById("matricula").value = maquinaria[codigo].matricula || "";
+
+      try { actualizarIntervalosMantenimientoPorCodigo(codigo); } catch (_) {}
+      // Auto-rellenado desactivado: no cargar operaciones/materiales al seleccionar código.
+    }
+
+    function normalizarCodigoMaquina(codigo) {
+      return String(codigo || "").trim();
+    }
+
+    function esIntervaloHoras(k) {
+      return /^h\d+$/i.test(String(k || "").trim());
+    }
+
+    function pesoIntervaloMantenimiento(k) {
+      const key = String(k || "").trim();
+      if (!key) return 9999;
+      if (key === "daily") return 0;
+      if (key === "diario") return 0;
+      if (key === "h50_post") return 55;
+      const hm = key.match(/^h(\d+)$/i);
+      if (hm) return parseInt(hm[1], 10);
+      if (key.toLowerCase().endsWith("h")) {
+        const n = parseInt(key, 10);
+        if (!Number.isNaN(n)) return n;
+      }
+      const ym = key.match(/^y(\d+)$/i);
+      if (ym) return 10000 + parseInt(ym[1], 10);
+      if (key.toLowerCase() === "anual") return 10001;
+      return 9999;
+    }
+
+    function labelIntervaloMantenimiento(k) {
+      const key = String(k || "").trim();
+      if (!key) return "";
+      if (key === "daily") return "DIARIO";
+      if (key === "diario") return "DIARIO";
+      if (key === "y1") return "ANUAL";
+      if (/^y\d+$/i.test(key)) return "AÑO " + key.slice(1);
+      if (key === "h50_post") return "50 h";
+      const hm = key.match(/^h(\d+)$/i);
+      if (hm) return hm[1] + " h";
+      return key.toUpperCase();
+    }
+
+    function actualizarIntervalosMantenimientoPorCodigo() {
+      if (window.rpMaintenanceIntervals) window.rpMaintenanceIntervals.refresh();
+      syncTipoMantenimientoPrint();
+    }
+
+    function cargarMantenimiento() {
+      // Auto-rellenado desactivado: no modificar operaciones ni filtros/materiales al cambiar
+      // el tipo de mantenimiento o el código.
+      try { syncTipoMantenimientoPrint(); } catch (_) {}
+      return;
+      const tipo = document.getElementById("tipoMantenimiento")?.value || "";
+      const codigo = document.getElementById("codigoInterno")?.value || "";
+      const tbody = document.querySelector("#operaciones tbody");
+      if (!tbody) return;
+
+      let ops = [];
+
+      // 1) Preferir la base por modelos si existe (mismo fichero `mantenimientos_modelos.js` que usa `propuesta_ui.html`)
+      try {
+        const db = window.MANTENIMIENTOS_MODELOS;
+        if (db && codigo) {
+          const codeNorm = normalizarCodigoMaquina(codigo);
+          const forced = db.machines && (db.machines[codeNorm] || db.machines[codigo]) ? (db.machines[codeNorm] || db.machines[codigo]).modelId : "";
+          const modelId = forced || (typeof db.getModelIdForCodigo === "function" ? db.getModelIdForCodigo(codeNorm) : "");
+          const tpl = modelId ? db.templatesByModel?.[modelId] : null;
+
+          const intervalKey = String(tipo || "").trim();
+          const rec = tpl?.intervals?.[intervalKey];
+          if (rec && Array.isArray(rec.ops)) ops = rec.ops.slice();
+        }
+      } catch (_) {}
+
+      // 2) Fallback al plan clásico (`mantenimientos.js`)
+      if (ops.length === 0) {
+        ops = (typeof mantenimientos !== "undefined" && mantenimientos && Array.isArray(mantenimientos[tipo]))
+          ? mantenimientos[tipo]
+          : [];
+      }
+
+      tbody.innerHTML = "";
+      if (ops.length === 0) {
+        addOperacion();
+        return;
+      }
+
+      ops.forEach((op) => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+          <td>
+            <textarea class="texto-operacion" oninput="autoResize(this)"></textarea>
+          </td>
+          <td class="check"><input type="checkbox"></td>
+          <td class="delete-cell">
+            <button type="button" class="delete-btn" onclick="deleteOperacion(this)">✖</button>
+          </td>
+        `;
+        const ta = row.querySelector("textarea");
+        if (ta) ta.value = op || "";
+      });
+
+      setTimeout(() => tbody.querySelectorAll("textarea").forEach(autoResize), 0);
+    }
+
+
+
+	    function initSelectCodigoInterno() {
+	      const input = document.getElementById("codigoInterno");
+	      const list = document.getElementById("codigoInternoList");
+	      if (!input || !list) return;
+	      if (typeof maquinaria === "undefined" || !maquinaria) return;
+	
+	      list.innerHTML = "";
+	      Object.keys(maquinaria).sort().forEach((codigo) => {
+	        const option = document.createElement("option");
+	        option.value = codigo;
+	        list.appendChild(option);
+	      });
+	    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Auto-ajuste para todos los campos de texto (mostrar todo el contenido)
+      document.querySelectorAll("textarea").forEach(autoResize);
+      document.addEventListener("input", (ev) => {
+        const el = ev.target;
+        if (el && el.tagName && String(el.tagName).toLowerCase() === "textarea") autoResize(el);
+      });
+
+      initSelectCodigoInterno();
+      syncTipoMantenimientoPrint();
+      const firmaInput = document.getElementById("firmaInput");
+      if (firmaInput) {
+        firmaInput.addEventListener("change", (ev) => {
+          const target = ev.target;
+          const file = target && target.files ? target.files[0] : null;
+          handleFirmaFile(file);
+        });
+      }
+      try {
+        const codigo = document.getElementById("codigoInterno")?.value || "";
+        if (codigo) actualizarIntervalosMantenimientoPorCodigo(codigo);
+      } catch (_) {}
+      cargarMantenimiento();
+    });
+  </script>
+  <script src="fichas_patch.js?v=20261016-direct-rows"></script>
+  <script src="import-chatgpt.js?v=20261016-single-click"></script>
+  <!-- APP FITXES - FEATURE BLOCK 1 - AUTOSAVE -->
+  <script src="autosave.js?v=20261019-intervals"></script>
+  <script src="interval-selector.js?v=20261019-remove-interval"></script>
+  <!-- APP FITXES - FEATURE - TEMPLATES -->
+  <script src="templates.js?v=20261021-sin-oficial"></script>
+  <script type="module" src="/pdf-import/ui.mjs?v=20261019"></script>
+</body>
+</html>

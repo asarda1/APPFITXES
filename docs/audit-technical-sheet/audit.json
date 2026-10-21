@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-16",
+  "project": "APP FITXES",
+  "scope": "Editor de fitxes tecniques",
+  "verification": {
+    "testCommand": "npm.cmd run test:technical",
+    "testsPassed": 11,
+    "directRowButtonsVerified": true,
+    "clearControlsRemoved": true,
+    "bastidorInHeaderVerified": true,
+    "legacyBastidorRecoveryVerified": true,
+    "buildCommand": "npm.cmd run build",
+    "buildPassed": true,
+    "browser": "Chrome, context temporal sense dades personals",
+    "browserRuntimeErrors": 0,
+    "pdfPages": 5,
+    "motorKeptTogether": true,
+    "oversizedGroupRowsVerified": 65,
+    "continuationHeadingsVerified": true,
+    "pageNumbersVerified": true
+  },
+  "existingCheckLimitations": [
+    "npm.cmd run lint: falta eslint.config.js/mjs/cjs al projecte.",
+    "npm.cmd test: vite.config.ts referencia src/test/setup.ts, que no existeix. Les proves especificament afegides s'executen amb test:technical."
+  ],
+  "unchangedScope": [
+    "Editor de manteniment",
+    "Base de dades i registres reals",
+    "Controls d'imatges"
+  ],
+  "artifacts": [
+    "browser-audit.json",
+    "pdf-audit.json",
+    "editor-desktop.png",
+    "editor-mobile.png",
+    "header-bastidor.png",
+    "pagination.pdf",
+    "pdf-page-2.png",
+    "pdf-page-4.png"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "Six ordered defaults, case-insensitive Enter completion, free typing and full arrow-only list verified",
+    "Packaged and old personal templates can be edited/deleted; changes persist and current sheet is preserved",
+    "Right-side crosses remove default/custom options persistently without changing the sheet; deleted values can be saved again",
+    "Saved interval survives reload and PDF excludes new editing controls"
+  ],
+  "errors": [],
+  "mobileRowsFit": true
+}

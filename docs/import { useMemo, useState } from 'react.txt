@@ -1,0 +1,400 @@
+import { useMemo, useState } from 'react'
+import { Link, Navigate, useParams } from 'react-router-dom'
+import { ArrowLeft, Calendar, Euro, FileDown, FileSpreadsheet, MapPinned, Package, Search, Settings2, TriangleAlert } from 'lucide-react'
+import { workshopAssets } from './MachineryModulePage'
+
+const pageConfig = {
+  breakdowns: {
+    title: 'Averías',
+    icon: TriangleAlert,
+    columns: ['Código', 'Descripción', 'Estado', 'Fecha'],
+    searchableLabel: 'Buscar avería...',
+  },
+  actions: {
+    title: 'Órdenes de trabajo',
+    icon: Settings2,
+    columns: ['Tipo de orden', 'Orden', 'Descripción', 'Fecha'],
+    searchableLabel: 'Buscar orden de trabajo...',
+  },
+  expenses: {
+    title: 'Gastos acumulados',
+    icon: Euro,
+    columns: ['Concepto', 'Importe'],
+    searchableLabel: 'Buscar concepto...',
+  },
+  parts: {
+    title: 'Repuestos',
+    icon: Package,
+    columns: ['Tipo', 'Repuesto', 'Cantidad', 'OT', 'Fecha', 'Coste'],
+    searchableLabel: 'Buscar repuesto...',
+  },
+  movements: {
+    title: 'Ubicaciones / movimientos',
+    icon: MapPinned,
+    columns: ['Ubicación', 'Número de obra', 'Fecha'],
+    searchableLabel: 'Buscar ubicación u obra...',
+  },
+} as const
+
+export function MachinerySecondaryPage() {
+  const { assetId, section } = useParams()
+  const asset = workshopAssets.find((item) => item.id === assetId)
+  const config = section ? pageConfig[section as keyof typeof pageConfig] : undefined
+  const [yearFilter, setYearFilter] = useState('all')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [partTypeFilter, setPartTypeFilter] = useState('all')
+  const [quantityFilter, setQuantityFilter] = useState('all')
+  const [monthFilter, setMonthFilter] = useState('all')
+  const [workOrderTypeFilter, setWorkOrderTypeFilter] = useState('all')
+  const [conceptFilter, setConceptFilter] = useState('all')
+
+  if (!asset || !config || !section) {
+    return <Navigate to="/assets-and-machinery" replace />
+  }
+
+  const Icon = config.icon
+  const allRows = getRows(asset.id, section)
+
+  const years = useMemo(() => {
+    const yearIndex = getYearIndex(section)
+    return Array.from(new Set(allRows.map((row) => row[yearIndex]?.slice(-4)))).filter(Boolean).sort()
+  }, [allRows, section])
+
+  const partTypes = useMemo(() => {
+    if (section !== 'parts') return []
+    return Array.from(new Set(allRows.map((row) => row[0]))).sort()
+  }, [allRows, section])
+
+  const workOrderTypes = useMemo(() => {
+    if (section !== 'actions') return []
+    return Array.from(new Set(allRows.map((row) => row[0]))).sort()
+  }, [allRows, section])
+
+  const concepts = useMemo(() => {
+    if (section !== 'expenses') return []
+    return Array.from(new Set(allRows.map((row) => row[0]))).sort()
+  }, [allRows, section])
+
+  const filteredRows = useMemo(() => {
+    return allRows.filter((row) => {
+      const yearIndex = getYearIndex(section)
+      const rowYear = row[yearIndex]?.slice(-4)
+      const matchesYear = yearFilter === 'all' || rowYear === yearFilter
+      const rowMonth = row[yearIndex]?.slice(3, 5)
+      const matchesMonth = section !== 'actions' || monthFilter === 'all' || rowMonth === monthFilter
+
+      const matchesSearch =
+        searchTerm.trim() === '' ||
+        row.join(' ').toLowerCase().includes(searchTerm.trim().toLowerCase())
+
+      if (section === 'actions') {
+        const matchesWorkOrderType = workOrderTypeFilter === 'all' || row[0] === workOrderTypeFilter
+        return matchesYear && matchesMonth && matchesSearch && matchesWorkOrderType
+      }
+
+      if (section !== 'parts') {
+        return matchesYear && matchesSearch
+      }
+
+      const matchesPartType = partTypeFilter === 'all' || row[0] === partTypeFilter
+
+      const quantity = Number(row[2])
+      const matchesQuantity =
+        quantityFilter === 'all' ||
+        (quantityFilter === '1' && quantity === 1) ||
+        (quantityFilter === '2-5' && quantity >= 2 && quantity <= 5) ||
+        (quantityFilter === '6+' && quantity >= 6)
+
+      return matchesYear && matchesSearch && matchesPartType && matchesQuantity
+    })
+  }, [allRows, monthFilter, partTypeFilter, quantityFilter, searchTerm, section, workOrderTypeFilter, yearFilter])
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <Link
+          to={`/assets-and-machinery/${asset.id}`}
+          className="rounded-lg border p-2 transition-colors hover:bg-muted"
+        >
+          <ArrowLeft className="h-4 w-4" />
+        </Link>
+        <div>
+          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            Maquinaria · {asset.internalCode}
+          </div>
+          <h2 className="text-3xl font-bold">{config.title}</h2>
+        </div>
+      </div>
+
+      <section className="overflow-hidden rounded-2xl border bg-card">
+        <div
+          className="flex items-center gap-2 px-6 py-4 text-white"
+          style={{ backgroundColor: 'rgb(250, 166, 26)' }}
+        >
+          <Icon className="h-5 w-5" />
+          <h3 className="font-semibold text-lg">
+            {config.title} · {asset.internalCode}
+          </h3>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-5 flex flex-wrap items-center gap-3">
+            <div className="relative min-w-[260px] flex-1">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <input
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                placeholder={config.searchableLabel}
+                className="w-full rounded-lg border bg-background py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm">
+              <Calendar className="h-4 w-4 text-muted-foreground" />
+              <select
+                value={yearFilter}
+                onChange={(event) => setYearFilter(event.target.value)}
+                className="bg-transparent focus:outline-none"
+              >
+                <option value="all">Año</option>
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {section === 'actions' && (
+              <>
+                <div className="flex min-w-[150px] items-center gap-2 rounded-lg border px-4 py-2 text-sm">
+                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  <select
+                    value={monthFilter}
+                    onChange={(event) => setMonthFilter(event.target.value)}
+                    className="min-w-[96px] bg-transparent focus:outline-none"
+                  >
+                    <option value="all">Mes</option>
+                    <option value="01">Enero</option>
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                  </select>
+                </div>
+
+                <div className="flex min-w-[190px] items-center gap-2 rounded-lg border px-4 py-2 text-sm">
+                  <select
+                    value={workOrderTypeFilter}
+                    onChange={(event) => setWorkOrderTypeFilter(event.target.value)}
+                    className="min-w-[138px] bg-transparent focus:outline-none"
+                  >
+                    <option value="all">Tipo de orden</option>
+                    {workOrderTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </>
+            )}
+
+            {section === 'parts' && (
+              <>
+                <div className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm">
+                  <select
+                    value={partTypeFilter}
+                    onChange={(event) => setPartTypeFilter(event.target.value)}
+                    className="bg-transparent focus:outline-none"
+                  >
+                    <option value="all">Tipo de repuesto</option>
+                    {partTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm">
+                  <select
+                    value={quantityFilter}
+                    onChange={(event) => setQuantityFilter(event.target.value)}
+                    className="bg-transparent focus:outline-none"
+                  >
+                    <option value="all">Cantidad</option>
+                    <option value="1">1</option>
+                    <option value="2-5">2-5</option>
+                    <option value="6+">6+</option>
+                  </select>
+                </div>
+              </>
+            )}
+
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-lg border bg-background px-4 py-2 text-sm font-medium transition-colors hover:border-primary hover:bg-primary/5"
+            >
+              <FileDown className="h-4 w-4 text-muted-foreground" />
+              Exportar PDF
+            </button>
+
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-lg border bg-background px-4 py-2 text-sm font-medium transition-colors hover:border-primary hover:bg-primary/5"
+            >
+              <FileSpreadsheet className="h-4 w-4 text-muted-foreground" />
+              Exportar Excel
+            </button>
+          </div>
+
+          {section === 'parts' && (
+            <div className="mb-5 rounded-xl border bg-muted/30 p-4 text-sm text-muted-foreground">
+              Las referencias y trazabilidad se hará en función de como están creados los recambios en Navision/BC.
+            </div>
+          )}
+
+          <div className="overflow-hidden rounded-xl border">
+            <table className="w-full">
+              <thead className="bg-muted/60">
+                <tr className="text-left text-xs uppercase tracking-wide text-muted-foreground">
+                  {config.columns.map((column) => (
+                    <th key={column} className="px-4 py-3">
+                      {column}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {filteredRows.map((row, index) => (
+                  <tr key={index} className="border-t">
+                    {(section === 'expenses' ? row.slice(0, 2) : row).map((cell, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        className={`px-4 py-3 text-sm ${
+                          cellIndex === 0 ? 'font-medium text-foreground' : 'text-muted-foreground'
+                        }`}
+                      >
+                        {section === 'actions' && cellIndex === 1 ? (
+                          <Link
+                            to={`/work-orders/${cell}`}
+                            className="font-medium text-primary hover:underline"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {cell}
+                          </Link>
+                        ) : (
+                          cell
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+function getRows(assetId: string, section: string): string[][] {
+  if (section === 'breakdowns') {
+    if (assetId === 'asset-001') {
+      return [
+        ['AVR-024', 'Fallo sistema hidráulico', 'En reparación', '12/03/2026'],
+        ['AVR-011', 'Pérdida de presión', 'Solucionada', '04/02/2026'],
+      ]
+    }
+    if (assetId === 'asset-002') {
+      return [['AVR-003', 'Incidencia tacógrafo', 'Pendiente', '18/01/2026']]
+    }
+    return [['AVR-019', 'Revisión de mezcladora', 'Solucionada', '20/02/2026']]
+  }
+
+  if (section === 'actions') {
+    if (assetId === 'asset-001') {
+      return [
+        ['Orden de mantenimiento', 'OT-1034', 'Cambio de filtros y revisión general', '14/03/2026'],
+        ['Orden de reparaciones', 'OT-0978', 'Sustitución de latiguillo hidráulico', '05/02/2026'],
+      ]
+    }
+    if (assetId === 'asset-002') {
+      return [['Orden de mantenimiento', 'OT-1102', 'Chequeo documental y tacógrafo', '16/03/2026']]
+    }
+    return [['Orden de mantenimiento', 'OT-1010', 'Revisión por intervalo de horas', '26/02/2026']]
+  }
+
+  if (section === 'expenses') {
+    if (assetId === 'asset-001') {
+      return [
+        ['Mantenimiento', '1.240,00 €', '2026'],
+        ['Reparaciones', '3.860,00 €', '2026'],
+        ['Repuestos', '1.420,00 €', '2026'],
+        ['Total', '6.520,00 €', '2026'],
+        ['Mantenimiento', '980,00 €', '2025'],
+      ]
+    }
+    if (assetId === 'asset-002') {
+      return [
+        ['Mantenimiento', '680,00 €', '2026'],
+        ['Reparaciones', '0,00 €', '2026'],
+        ['Repuestos', '210,00 €', '2026'],
+        ['Total', '890,00 €', '2026'],
+      ]
+    }
+    return [
+      ['Mantenimiento', '920,00 €', '2026'],
+      ['Reparaciones', '540,00 €', '2026'],
+      ['Repuestos', '310,00 €', '2026'],
+      ['Total', '1.770,00 €', '2026'],
+    ]
+  }
+
+  if (section === 'movements') {
+    if (assetId === 'asset-001') {
+      return [
+        ['Obra Residencial Norte', 'OBR-2045', '18/03/2026'],
+        ['Taller central', 'TLL-001', '02/02/2026'],
+        ['Obra Logística Sur', 'OBR-1988', '14/11/2025'],
+      ]
+    }
+    if (assetId === 'asset-002') {
+      return [
+        ['Obra Industrial Este', 'OBR-2210', '11/03/2026'],
+        ['Taller central', 'TLL-001', '08/01/2026'],
+      ]
+    }
+    return [
+      ['Obra Urbana Centro', 'OBR-2173', '22/02/2026'],
+      ['Taller central', 'TLL-001', '10/12/2025'],
+    ]
+  }
+
+  if (assetId === 'asset-001') {
+    return [
+      ['Hidráulico', 'Filtro hidráulico', '2', 'OT-1034', '14/03/2026', '180,00 €'],
+      ['Hidráulico', 'Latiguillo presión', '1', 'OT-0978', '05/02/2026', '320,00 €'],
+    ]
+  }
+  if (assetId === 'asset-002') {
+    return [['Electrónico', 'Sensor tacógrafo', '1', 'OT-1102', '16/03/2026', '210,00 €']]
+  }
+  return [['Lubricación', 'Kit engrase', '1', 'OT-1010', '26/02/2026', '95,00 €']]
+}
+
+function getYearIndex(section: string) {
+  if (section === 'expenses') return 2
+  if (section === 'parts') return 4
+  return 2
+}

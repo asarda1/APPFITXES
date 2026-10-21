@@ -1,0 +1,460 @@
+{
+  "layoutVersion": 2,
+  "cabecera": {
+    "maquina": "EXCAVADORA ELÉCTRICA",
+    "codigoInterno": "PDF-TEC-001",
+    "marcaModelo": "ROMERO POLO TEST",
+    "matricula": "1234 ABC",
+    "anyo": "2026"
+  },
+  "caracteristicasGenerales": {
+    "marca": "VALOR GENERAL 0",
+    "modelo": "VALOR GENERAL 1",
+    "numeroSerieBastidor": "VIN-TEC-2026",
+    "fechaCompra": "VALOR GENERAL 2",
+    "valorCompra": "VALOR GENERAL 3",
+    "motor": "VALOR GENERAL 4",
+    "potencia": "VALOR GENERAL 5",
+    "consumoEstimado": "VALOR GENERAL 6",
+    "estado": "VALOR GENERAL 7"
+  },
+  "grupos": [
+    {
+      "titulo": "MOTOR PERSONALIZADO",
+      "filas": [
+        {
+          "caracteristica": "DATO MOTOR 0",
+          "valor": "VALOR MOTOR 0"
+        },
+        {
+          "caracteristica": "DATO MOTOR 1",
+          "valor": "VALOR MOTOR 1"
+        },
+        {
+          "caracteristica": "DATO MOTOR 2",
+          "valor": "VALOR MOTOR 2"
+        },
+        {
+          "caracteristica": "DATO MOTOR 3",
+          "valor": "VALOR MOTOR 3"
+        },
+        {
+          "caracteristica": "DATO MOTOR 4",
+          "valor": "VALOR MOTOR 4"
+        },
+        {
+          "caracteristica": "DATO MOTOR 5",
+          "valor": "VALOR MOTOR 5"
+        },
+        {
+          "caracteristica": "DATO MOTOR 6",
+          "valor": "VALOR MOTOR 6"
+        },
+        {
+          "caracteristica": "DATO MOTOR 7",
+          "valor": "VALOR MOTOR 7"
+        },
+        {
+          "caracteristica": "DATO MOTOR 8",
+          "valor": "VALOR MOTOR 8"
+        },
+        {
+          "caracteristica": "DATO MOTOR 9",
+          "valor": "VALOR MOTOR 9"
+        },
+        {
+          "caracteristica": "DATO MOTOR 10",
+          "valor": "VALOR MOTOR 10"
+        },
+        {
+          "caracteristica": "DATO MOTOR 11",
+          "valor": "VALOR MOTOR 11"
+        },
+        {
+          "caracteristica": "DATO MOTOR 12",
+          "valor": "VALOR MOTOR 12"
+        },
+        {
+          "caracteristica": "DATO MOTOR 13",
+          "valor": "VALOR MOTOR 13"
+        },
+        {
+          "caracteristica": "DATO MOTOR 14",
+          "valor": "VALOR MOTOR 14"
+        },
+        {
+          "caracteristica": "DATO MOTOR 15",
+          "valor": "VALOR MOTOR 15"
+        },
+        {
+          "caracteristica": "DATO MOTOR 16",
+          "valor": "VALOR MOTOR 16"
+        },
+        {
+          "caracteristica": "DATO MOTOR 17",
+          "valor": "VALOR MOTOR 17"
+        },
+        {
+          "caracteristica": "DATO MOTOR 18",
+          "valor": "VALOR MOTOR 18"
+        },
+        {
+          "caracteristica": "DATO MOTOR 19",
+          "valor": "VALOR MOTOR 19"
+        },
+        {
+          "caracteristica": "DATO MOTOR 20",
+          "valor": "VALOR MOTOR 20"
+        },
+        {
+          "caracteristica": "DATO MOTOR 21",
+          "valor": "VALOR MOTOR 21"
+        },
+        {
+          "caracteristica": "DATO MOTOR 22",
+          "valor": "VALOR MOTOR 22"
+        },
+        {
+          "caracteristica": "DATO MOTOR 23",
+          "valor": "VALOR MOTOR 23"
+        },
+        {
+          "caracteristica": "DATO MOTOR 24",
+          "valor": "VALOR MOTOR 24"
+        },
+        {
+          "caracteristica": "DATO MOTOR 25",
+          "valor": "VALOR MOTOR 25"
+        },
+        {
+          "caracteristica": "DATO MOTOR 26",
+          "valor": "VALOR MOTOR 26"
+        },
+        {
+          "caracteristica": "DATO MOTOR 27",
+          "valor": "VALOR MOTOR 27"
+        },
+        {
+          "caracteristica": "DATO MOTOR 28",
+          "valor": "VALOR MOTOR 28"
+        },
+        {
+          "caracteristica": "DATO MOTOR 29",
+          "valor": "VALOR MOTOR 29"
+        },
+        {
+          "caracteristica": "DATO MOTOR 30",
+          "valor": "VALOR MOTOR 30"
+        },
+        {
+          "caracteristica": "DATO MOTOR 31",
+          "valor": "VALOR MOTOR 31"
+        },
+        {
+          "caracteristica": "DATO MOTOR 32",
+          "valor": "VALOR MOTOR 32"
+        },
+        {
+          "caracteristica": "DATO MOTOR 33",
+          "valor": "VALOR MOTOR 33"
+        },
+        {
+          "caracteristica": "DATO MOTOR 34",
+          "valor": "VALOR MOTOR 34"
+        },
+        {
+          "caracteristica": "DATO MOTOR 35",
+          "valor": "VALOR MOTOR 35"
+        },
+        {
+          "caracteristica": "DATO MOTOR 36",
+          "valor": "VALOR MOTOR 36"
+        },
+        {
+          "caracteristica": "DATO MOTOR 37",
+          "valor": "VALOR MOTOR 37"
+        },
+        {
+          "caracteristica": "DATO MOTOR 38",
+          "valor": "VALOR MOTOR 38"
+        },
+        {
+          "caracteristica": "DATO MOTOR 39",
+          "valor": "VALOR MOTOR 39"
+        },
+        {
+          "caracteristica": "DATO MOTOR 40",
+          "valor": "VALOR MOTOR 40"
+        },
+        {
+          "caracteristica": "DATO MOTOR 41",
+          "valor": "VALOR MOTOR 41"
+        }
+      ]
+    }
+  ],
+  "filtrosMateriales": [
+    {
+      "tipo": "FILTRO ACEITE",
+      "cantidadUnidad": "2 unidades"
+    },
+    {
+      "tipo": "ACEITE MOTOR",
+      "cantidadUnidad": "20 L\nReferencia 123"
+    }
+  ],
+  "imagenPrincipal": {
+    "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAA8CAYAAACtrX6oAAABIUlEQVR4AezTwYlCURBE0Y8xTDJmOwFNEhOJQq8b0aX3HeG/ReOm6lC3//v9cdL38/v3OOm7XX7pBgCnea8LMOB4A/F4Fgw43kA8ngUDTjZwTCgLjlMDBhxvIB7PggHHG4jHs2DA8Qbi8Sz4LOB42gPjWXAcHTDgeAPxeBYMON5APJ4FA443EI9nwQPcfQB3bScZ4Kmh+wDu2k4ywFND9wHctZ1kgKeG7gO4azvJAE8N3ec1cDf3MckAx6kBA443EI9nwYDjDcTjWTDgeAPxeBa8AYdugEOYWxTAWyuhG+AQ5hYF8NZK6AY4hLlFAby1EroBDmFuUQBvrYRuHwGHch8TBXCcGjDgeAPxeBYMON5APJ4FA443EI9nwW8Af/NfngAAAP//utnaXAAAAAZJREFUAwBcmCGEovNg5gAAAABJRU5ErkJggg=="
+  },
+  "layout": [
+    {
+      "type": "group",
+      "kind": "general",
+      "title": "CARACTERÍSTICAS GENERALES",
+      "filas": [
+        {
+          "caracteristica": "MARCA",
+          "valor": "VALOR GENERAL 0",
+          "fieldId": "tec_marca",
+          "editable": false
+        },
+        {
+          "caracteristica": "MODELO",
+          "valor": "VALOR GENERAL 1",
+          "fieldId": "tec_modelo",
+          "editable": false
+        },
+        {
+          "caracteristica": "FECHA DE COMPRA",
+          "valor": "VALOR GENERAL 2",
+          "fieldId": "tec_fecha_compra",
+          "editable": false
+        },
+        {
+          "caracteristica": "VALOR DE COMPRA",
+          "valor": "VALOR GENERAL 3",
+          "fieldId": "tec_valor_compra",
+          "editable": false
+        },
+        {
+          "caracteristica": "MOTOR",
+          "valor": "VALOR GENERAL 4",
+          "fieldId": "tec_motor",
+          "editable": false
+        },
+        {
+          "caracteristica": "POTENCIA",
+          "valor": "VALOR GENERAL 5",
+          "fieldId": "tec_potencia",
+          "editable": false
+        },
+        {
+          "caracteristica": "CONSUMO ESTIMADO",
+          "valor": "VALOR GENERAL 6",
+          "fieldId": "tec_consumo_estimado",
+          "editable": false
+        },
+        {
+          "caracteristica": "ESTADO",
+          "valor": "VALOR GENERAL 7",
+          "fieldId": "tec_estado",
+          "editable": false
+        },
+        {
+          "caracteristica": "CAMPO PERSONALIZADO",
+          "valor": "Línea uno\nLínea dos",
+          "fieldId": "",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "type": "photo",
+      "photo": {
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAA8CAYAAACtrX6oAAABIUlEQVR4AezTwYlCURBE0Y8xTDJmOwFNEhOJQq8b0aX3HeG/ReOm6lC3//v9cdL38/v3OOm7XX7pBgCnea8LMOB4A/F4Fgw43kA8ngUDTjZwTCgLjlMDBhxvIB7PggHHG4jHs2DA8Qbi8Sz4LOB42gPjWXAcHTDgeAPxeBYMON5APJ4FA443EI9nwQPcfQB3bScZ4Kmh+wDu2k4ywFND9wHctZ1kgKeG7gO4azvJAE8N3ec1cDf3MckAx6kBA443EI9nwYDjDcTjWTDgeAPxeBa8AYdugEOYWxTAWyuhG+AQ5hYF8NZK6AY4hLlFAby1EroBDmFuUQBvrYRuHwGHch8TBXCcGjDgeAPxeBYMON5APJ4FA443EI9nwW8Af/NfngAAAP//utnaXAAAAAZJREFUAwBcmCGEovNg5gAAAABJRU5ErkJggg=="
+      }
+    },
+    {
+      "type": "group",
+      "kind": "keyvalue",
+      "group": {
+        "titulo": "MOTOR PERSONALIZADO",
+        "filas": [
+          {
+            "caracteristica": "DATO MOTOR 0",
+            "valor": "VALOR MOTOR 0"
+          },
+          {
+            "caracteristica": "DATO MOTOR 1",
+            "valor": "VALOR MOTOR 1"
+          },
+          {
+            "caracteristica": "DATO MOTOR 2",
+            "valor": "VALOR MOTOR 2"
+          },
+          {
+            "caracteristica": "DATO MOTOR 3",
+            "valor": "VALOR MOTOR 3"
+          },
+          {
+            "caracteristica": "DATO MOTOR 4",
+            "valor": "VALOR MOTOR 4"
+          },
+          {
+            "caracteristica": "DATO MOTOR 5",
+            "valor": "VALOR MOTOR 5"
+          },
+          {
+            "caracteristica": "DATO MOTOR 6",
+            "valor": "VALOR MOTOR 6"
+          },
+          {
+            "caracteristica": "DATO MOTOR 7",
+            "valor": "VALOR MOTOR 7"
+          },
+          {
+            "caracteristica": "DATO MOTOR 8",
+            "valor": "VALOR MOTOR 8"
+          },
+          {
+            "caracteristica": "DATO MOTOR 9",
+            "valor": "VALOR MOTOR 9"
+          },
+          {
+            "caracteristica": "DATO MOTOR 10",
+            "valor": "VALOR MOTOR 10"
+          },
+          {
+            "caracteristica": "DATO MOTOR 11",
+            "valor": "VALOR MOTOR 11"
+          },
+          {
+            "caracteristica": "DATO MOTOR 12",
+            "valor": "VALOR MOTOR 12"
+          },
+          {
+            "caracteristica": "DATO MOTOR 13",
+            "valor": "VALOR MOTOR 13"
+          },
+          {
+            "caracteristica": "DATO MOTOR 14",
+            "valor": "VALOR MOTOR 14"
+          },
+          {
+            "caracteristica": "DATO MOTOR 15",
+            "valor": "VALOR MOTOR 15"
+          },
+          {
+            "caracteristica": "DATO MOTOR 16",
+            "valor": "VALOR MOTOR 16"
+          },
+          {
+            "caracteristica": "DATO MOTOR 17",
+            "valor": "VALOR MOTOR 17"
+          },
+          {
+            "caracteristica": "DATO MOTOR 18",
+            "valor": "VALOR MOTOR 18"
+          },
+          {
+            "caracteristica": "DATO MOTOR 19",
+            "valor": "VALOR MOTOR 19"
+          },
+          {
+            "caracteristica": "DATO MOTOR 20",
+            "valor": "VALOR MOTOR 20"
+          },
+          {
+            "caracteristica": "DATO MOTOR 21",
+            "valor": "VALOR MOTOR 21"
+          },
+          {
+            "caracteristica": "DATO MOTOR 22",
+            "valor": "VALOR MOTOR 22"
+          },
+          {
+            "caracteristica": "DATO MOTOR 23",
+            "valor": "VALOR MOTOR 23"
+          },
+          {
+            "caracteristica": "DATO MOTOR 24",
+            "valor": "VALOR MOTOR 24"
+          },
+          {
+            "caracteristica": "DATO MOTOR 25",
+            "valor": "VALOR MOTOR 25"
+          },
+          {
+            "caracteristica": "DATO MOTOR 26",
+            "valor": "VALOR MOTOR 26"
+          },
+          {
+            "caracteristica": "DATO MOTOR 27",
+            "valor": "VALOR MOTOR 27"
+          },
+          {
+            "caracteristica": "DATO MOTOR 28",
+            "valor": "VALOR MOTOR 28"
+          },
+          {
+            "caracteristica": "DATO MOTOR 29",
+            "valor": "VALOR MOTOR 29"
+          },
+          {
+            "caracteristica": "DATO MOTOR 30",
+            "valor": "VALOR MOTOR 30"
+          },
+          {
+            "caracteristica": "DATO MOTOR 31",
+            "valor": "VALOR MOTOR 31"
+          },
+          {
+            "caracteristica": "DATO MOTOR 32",
+            "valor": "VALOR MOTOR 32"
+          },
+          {
+            "caracteristica": "DATO MOTOR 33",
+            "valor": "VALOR MOTOR 33"
+          },
+          {
+            "caracteristica": "DATO MOTOR 34",
+            "valor": "VALOR MOTOR 34"
+          },
+          {
+            "caracteristica": "DATO MOTOR 35",
+            "valor": "VALOR MOTOR 35"
+          },
+          {
+            "caracteristica": "DATO MOTOR 36",
+            "valor": "VALOR MOTOR 36"
+          },
+          {
+            "caracteristica": "DATO MOTOR 37",
+            "valor": "VALOR MOTOR 37"
+          },
+          {
+            "caracteristica": "DATO MOTOR 38",
+            "valor": "VALOR MOTOR 38"
+          },
+          {
+            "caracteristica": "DATO MOTOR 39",
+            "valor": "VALOR MOTOR 39"
+          },
+          {
+            "caracteristica": "DATO MOTOR 40",
+            "valor": "VALOR MOTOR 40"
+          },
+          {
+            "caracteristica": "DATO MOTOR 41",
+            "valor": "VALOR MOTOR 41"
+          }
+        ]
+      }
+    },
+    {
+      "type": "group",
+      "kind": "materials",
+      "title": "FILTRO Y MATERIALES"
+    }
+  ]
+}

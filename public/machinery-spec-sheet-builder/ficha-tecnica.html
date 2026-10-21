@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ficha Técnica / Especificaciones</title>
+  <style>
+    @page { size: A4; margin: 0; }
+
+    html, body{
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      text-rendering: geometricPrecision;
+    }
+    :root{
+      --ral-1007: #f2a900;
+      --app-orange-border: #f2a900;
+    }
+
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #e6e6e6;
+      color: #1f2937;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .pantalla{
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+    }
+
+    .oculto{ display:none; }
+
+    .barra-ficha{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      margin: 0 0 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--app-orange-border);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      box-sizing: border-box;
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+    }
+
+    .acciones-ficha{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .menu{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .menu-btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+    }
+
+    .menu-panel{
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      min-width: 190px;
+      background: #fff;
+      border: 1px solid rgba(15,23,42,0.12);
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+      padding: 6px;
+      display:none;
+      z-index: 30;
+    }
+
+    .menu.is-open .menu-panel{ display:block; }
+
+    .menu-item{
+      width: 100%;
+      display:flex;
+      justify-content: flex-start;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 0;
+      background: transparent;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .menu-item:hover{ background: rgba(15,23,42,0.06); }
+
+    button{
+      border: 1px solid rgba(15,23,42,0.12);
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor:pointer;
+      font-weight: 700;
+      color: #111827;
+    }
+    button:hover{ filter: brightness(0.98); }
+
+    .page{
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #fff;
+      padding: 15mm;
+      box-sizing: border-box;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .marca-agua{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.12;
+      transform: none;
+      z-index: 3;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      object-fit: contain;
+    }
+
+    .print-watermarks{
+      display: none;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .print-watermark-page{
+      position: absolute;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .print-watermark{
+      width: 72%;
+      height: auto;
+      opacity: 0.12;
+      mix-blend-mode: multiply;
+      object-fit: contain;
+    }
+
+    /* APP FITXES - FEATURE - PAGE NUMBERING */
+    .print-page-numbers{
+      display: none;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 4;
+      overflow: hidden;
+    }
+
+    .print-page-number-slot{
+      position: absolute;
+      left: 0;
+      width: 100%;
+    }
+
+    .rp-page-number{
+      position: absolute;
+      right: 6mm;
+      bottom: 6mm;
+      font-size: 9px;
+      color: #374151;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .page > *:not(.marca-agua):not(.print-watermarks):not(.print-page-numbers){
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .header-title{
+      font-size: 18px;
+      font-weight: 800;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .brand{
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--ral-1007);
+    }
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td{
+      border: 1px solid #000;
+      padding: 6px;
+      font-size: 13px;
+      vertical-align: top;
+      background: #fff;
+    }
+    th{
+      background: #fff;
+      white-space: nowrap;
+      width: 1%;
+      text-align: left;
+    }
+
+    .tec-header{
+      table-layout: fixed;
+    }
+
+    .tec-header th{
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    input, select, textarea{
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 13px;
+      padding: 4px 6px;
+      border: 1px solid #000;
+      background: transparent;
+      font-family: inherit;
+      max-width: 100%;
+    }
+
+    textarea{
+      resize: none;
+      overflow: hidden;
+      min-height: 28px;
+      line-height: 1.25;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .kv-key-input{
+      border: 0;
+      padding: 0;
+      background: transparent;
+      font-weight: 700;
+    }
+
+    .material-tipo{
+      font-weight: 700;
+    }
+
+    textarea.autogrow{
+      resize: vertical;
+      overflow: hidden;
+      min-height: 28px;
+      line-height: 1.25;
+    }
+
+    .section-title{
+      background: var(--ral-1007);
+      font-weight: 800;
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: .2px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .section-title{
+      background: var(--ral-1007) !important;
+    }
+
+    .section-title[contenteditable="true"]{
+      outline: none;
+      cursor: text;
+    }
+
+    .section-title[contenteditable="true"]:focus{
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.18);
+    }
+
+    .group{
+      border-radius: 6px;
+      outline: 2px solid transparent;
+      outline-offset: 4px;
+      transition: outline-color 120ms ease;
+    }
+
+    .group:not([data-group-kind="materials"]) th{
+      width: 35%;
+    }
+
+    .group.is-active{
+      outline-color: rgba(242, 169, 0, 0.55);
+    }
+
+    tr.is-active-row > th,
+    tr.is-active-row > td{
+      background: rgba(242, 169, 0, 0.08);
+    }
+
+    tr.is-selected-row > th,
+    tr.is-selected-row > td{
+      background: rgba(242, 169, 0, 0.18);
+    }
+
+    tr.is-selected-row input,
+    tr.is-selected-row textarea,
+    tr.is-selected-row select{
+      background: rgba(242, 169, 0, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(242, 169, 0, 0.45);
+    }
+
+    body.is-row-dragging{
+      user-select: none;
+      cursor: cell;
+    }
+
+    .foto-maquina.is-active-photo{
+      outline: 2px solid rgba(242, 169, 0, 0.55);
+      outline-offset: 4px;
+    }
+
+    .texto-operacion{
+      min-height: 36px;
+      resize: vertical;
+    }
+
+    .foto-maquina{
+      border: 1px dashed #000;
+      padding: 14px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #374151;
+      text-align:center;
+      background: #fff;
+    }
+
+    .foto-maquina.is-filled{
+      border-style: solid;
+      padding: 10px;
+    }
+
+    .foto-maquina .photo-actions{
+      margin-top: 10px;
+      display:flex;
+      justify-content:center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .foto-maquina .photo-actions button{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
+
+    .foto-maquina img{
+      max-width: 100%;
+      height: auto;
+      display:none;
+      margin: 0 auto;
+    }
+
+    .foto-maquina.is-filled img{
+      display:block;
+    }
+
+    .no-page-break{ page-break-inside: avoid; }
+
+    .footer{
+      margin-top: 12px;
+      font-size: 11px;
+      text-align: center;
+      opacity: 0.85;
+    }
+
+    @media print{
+      /* APP FITXES - FEATURE BLOCK 2 - PRINT PREVIEW */
+      .no-print{ display:none !important; }
+      html, body{
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+      }
+      .pantalla{
+        width: auto !important;
+        margin: 0 !important;
+        margin-left: 0 !important;
+        min-height: auto !important;
+        padding: 0 !important;
+      }
+      #pantalla-ficha-tecnica, #pantalla-ficha-tecnica *{ visibility: visible !important; }
+      #pantalla-ficha-tecnica{
+        padding: 0 !important;
+        width: auto !important;
+        margin: 0 !important;
+      }
+      .barra-ficha{ display:none !important; }
+      .no-page-break,
+      .group,
+      .group tr,
+      .group td,
+      .group tbody{
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+      .foto-maquina{
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .foto-maquina .photo-placeholder{ display:none !important; }
+      .foto-maquina .photo-actions{ display:none !important; }
+      .page{
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 12mm !important;
+        box-sizing: border-box !important;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+      }
+      .marca-agua{
+        display: none !important;
+      }
+      .print-watermarks{
+        display: block !important;
+      }
+      /* APP FITXES - FEATURE - PAGE NUMBERING */
+      .print-page-numbers{
+        display: block !important;
+      }
+
+      table:not(.tec-header){ table-layout: auto !important; }
+      .tec-header{ table-layout: fixed !important; }
+      table:not(.tec-header) th{
+        width: 38% !important;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+        word-break: normal;
+      }
+      th, td{
+        background: transparent !important;
+      }
+      .section-title{
+        background: var(--ral-1007) !important;
+      }
+      th, td{ border: 0.75pt solid #000; }
+      input, select, textarea{
+        border: 0.75pt solid #000;
+        background: transparent !important;
+      }
+      /* APP FITXES - FEATURE - PRINT PLACEHOLDER CLEANUP */
+      /* Los textos de ayuda ("Tipo de máquina", "Característica", "Valor"...) son placeholders
+         de edición y no deben imprimirse cuando el campo está vacío. La celda conserva su
+         tamaño/borde para poder escribirse a mano tras imprimir. */
+      input::placeholder,
+      textarea::placeholder{
+        color: transparent !important;
+        opacity: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="pantalla-ficha-tecnica" class="pantalla">
+    <div class="barra-ficha">
+      <button type="button" onclick="volverApp()">← Volver</button>
+      <div class="acciones-ficha">
+        <div class="menu" data-menu>
+          <button type="button" class="menu-btn" data-menu-trigger>
+            🖼 Imagen
+          </button>
+          <div class="menu-panel" role="menu">
+            <button type="button" class="menu-item" role="menuitem" onclick="addPhotoBeforeActiveGroup(); closeAllMenus();">Añadir</button>
+            <button type="button" class="menu-item" role="menuitem" onclick="removeActivePhoto(); closeAllMenus();">Eliminar</button>
+          </div>
+        </div>
+
+        <div class="menu" data-menu>
+          <button type="button" class="menu-btn" data-menu-trigger>
+            📋 Grupo
+          </button>
+          <div class="menu-panel" role="menu">
+            <button type="button" class="menu-item" role="menuitem" onclick="addGroup(); closeAllMenus();">Añadir</button>
+            <button type="button" class="menu-item" role="menuitem" onclick="removeActiveGroup(); closeAllMenus();">Eliminar</button>
+            <button type="button" class="menu-item" role="menuitem" onclick="moveActiveGroup(-1); closeAllMenus();" title="Subir el grupo seleccionado">↑ Subir</button>
+            <button type="button" class="menu-item" role="menuitem" onclick="moveActiveGroup(1); closeAllMenus();" title="Bajar el grupo seleccionado">↓ Bajar</button>
+          </div>
+        </div>
+
+        <button type="button" onclick="addRowToActiveGroup()" title="Añadir fila al grupo seleccionado">Añadir fila</button>
+        <button type="button" onclick="removeActiveRow()" title="Eliminar la fila seleccionada">Eliminar fila</button>
+        <button type="button" onclick="imprimirPDF()">Imprimir PDF</button>
+        <button type="button" onclick="guardarPDF()">💾 Guardar PDF</button>
+      </div>
+    </div>
+
+    <div class="page">
+      <img src="logo_romero_polo.png" class="marca-agua" alt="">
+      <div class="print-watermarks" aria-hidden="true"></div>
+      <!-- APP FITXES - FEATURE - PAGE NUMBERING -->
+      <div class="print-page-numbers" aria-hidden="true"></div>
+
+      <div class="header-row">
+        <div class="header-title">Ficha Técnica / Especificaciones</div>
+        <div class="brand">Romero Polo</div>
+      </div>
+
+      <table class="tec-header">
+        <colgroup>
+          <col style="width:18%;">
+          <col style="width:32%;">
+          <col style="width:22%;">
+          <col style="width:28%;">
+        </colgroup>
+        <tr>
+          <th>MÁQUINA</th>
+          <td><textarea id="tec_tipoMaquina" class="autogrow" rows="1" placeholder="Tipo de máquina"></textarea></td>
+          <th>CÓDIGO / Nº INTERNO</th>
+          <td>
+            <input id="tec_codigoInterno" list="tec_codigoInternoList" placeholder="Escribir o seleccionar codigo..." onchange="rellenarTecnicaDesdeCodigo()">
+            <datalist id="tec_codigoInternoList"></datalist>
+          </td>
+        </tr>
+
+        <tr>
+          <th>MARCA Y MODELO</th>
+          <td><textarea id="tec_marcaModelo" class="autogrow" rows="1" placeholder="Marca y modelo"></textarea></td>
+          <th>Nº bastidor/serie</th>
+          <td><textarea id="tec_serie" class="autogrow" rows="1" aria-label="Nº bastidor/serie" placeholder="Nº de serie / bastidor"></textarea></td>
+        </tr>
+
+        <tr>
+          <th>MATRÍCULA</th>
+          <td><textarea id="tec_matricula" class="autogrow" rows="1" placeholder="Matrícula"></textarea></td>
+          <th>AÑO</th>
+          <td><textarea id="tec_anyo" class="autogrow" rows="1" placeholder="Año"></textarea></td>
+        </tr>
+      </table>
+
+      <div class="foto-maquina" data-photo>
+        <div class="photo-placeholder">Espacio para imagen de la máquina (insertar antes de imprimir)</div>
+        <img alt="" style="display:none;">
+        <input type="file" accept="image/*" style="display:none;" />
+        <div class="photo-actions">
+          <button type="button">Seleccionar imagen</button>
+          <button type="button">Quitar imagen</button>
+        </div>
+      </div>
+
+      <br>
+
+      <div id="tec-groups">
+        <table class="no-page-break group" data-group data-group-kind="general">
+          <tr><td class="section-title" contenteditable="true" spellcheck="false">CARACTERÍSTICAS GENERALES</td></tr>
+          <tr>
+            <td>
+              <table style="margin:0;border:none;">
+                <tbody data-rows>
+                  <tr>
+                    <th style="width:35%;">MARCA</th>
+                    <td><textarea id="tec_marca" class="autogrow" rows="1" placeholder="Marca"></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>MODELO</th>
+                    <td><textarea id="tec_modelo" class="autogrow" rows="1" placeholder="Modelo"></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>FECHA DE COMPRA</th>
+                    <td><textarea id="tec_fecha_compra" class="autogrow" rows="1" placeholder="Fecha de compra"></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>VALOR DE COMPRA</th>
+                    <td><textarea id="tec_valor_compra" class="autogrow" rows="1" placeholder="€"></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>MOTOR</th>
+                    <td><textarea id="tec_motor" class="autogrow" rows="1" placeholder="Tipo / combustible"></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>POTENCIA</th>
+                    <td><textarea id="tec_potencia" class="autogrow" rows="1" placeholder="kW / CV"></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>CONSUMO ESTIMADO</th>
+                    <td><textarea id="tec_consumo_estimado" class="autogrow" rows="1" placeholder="L/h"></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>ESTADO</th>
+                    <td><textarea id="tec_estado" class="autogrow" rows="1" placeholder="Operativa / mantenimiento / ..."></textarea></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <div class="foto-maquina" data-photo>
+          <div class="photo-placeholder">Espacio para imagen (insertar antes de imprimir)</div>
+          <img alt="" style="display:none;">
+          <input type="file" accept="image/*" style="display:none;" />
+          <div class="photo-actions">
+            <button type="button">Seleccionar imagen</button>
+            <button type="button">Quitar imagen</button>
+          </div>
+        </div>
+        <table class="no-page-break group" data-group>
+          <tr><td class="section-title" contenteditable="true" spellcheck="false">DIMENSIONES</td></tr>
+          <tr>
+            <td>
+              <table style="margin:0;border:none;">
+                <tbody data-rows>
+                  <tr>
+                    <th style="width:35%;"><textarea class="kv-key-input autogrow" rows="1" placeholder="Característica"></textarea></th>
+                    <td><textarea class="autogrow" rows="1" placeholder="Valor"></textarea></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table class="no-page-break group" data-group data-group-kind="materials">
+        <tr><td class="section-title" contenteditable="true" spellcheck="false">FILTRO Y MATERIALES</td></tr>
+        <tr>
+          <td>
+            <table style="margin:0;border:none;">
+              <thead>
+                <tr>
+                  <th style="width:60%;">Tipo de filtro / material</th>
+                  <th style="width:40%;">Cantidad / unidad</th>
+                </tr>
+              </thead>
+              <tbody data-rows>
+                <tr>
+                  <td>
+                    <textarea class="material-tipo texto-operacion" placeholder="Filtro / material"></textarea>
+                  </td>
+                  <td>
+                    <textarea class="autogrow cantidad-unidad" rows="1" placeholder="Cantidad / unidad"></textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </table>
+        <table class="no-page-break group" data-group>
+          <tr><td class="section-title" contenteditable="true" spellcheck="false">SISTEMA ELÉCTRICO</td></tr>
+          <tr>
+            <td>
+              <table style="margin:0;border:none;">
+                <tbody data-rows>
+                  <tr>
+                    <th style="width:35%;"><textarea class="kv-key-input autogrow" rows="1" placeholder="Característica"></textarea></th>
+                    <td><textarea class="autogrow" rows="1" placeholder="Valor"></textarea></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="footer">
+        JOSÉ ANTONIO ROMERO POLO S.A. · CIF A25036880 · C/ Comerç, 2 · 25007 Lleida · Tel. 973 228 960
+      </div>
+    </div>
+  </div>
+
+  <script src="maquinaria_completa.js"></script>
+  <script>
+    const MAX_UNDO_STEPS = 30;
+
+    function guardarPDF() {
+      refreshPrintWatermarks();
+      window.print();
+    }
+
+    function volverApp() {
+      if (window.parent && window.parent !== window) {
+        window.parent.history.back();
+        return;
+      }
+      window.history.back();
+    }
+
+    function getPageRoot() {
+      return document.querySelector('#pantalla-ficha-tecnica .page');
+    }
+
+    function refreshPrintWatermarks() {
+      const page = getPageRoot();
+      if (!page) return;
+
+      const host = page.querySelector('.print-watermarks');
+      if (!host) return;
+
+      const pageWidth = page.getBoundingClientRect().width;
+      if (!pageWidth) return;
+
+      const pageHeight = pageWidth * (297 / 210);
+      const totalHeight = Math.max(page.scrollHeight, pageHeight);
+      const pageCount = Math.max(1, Math.ceil(totalHeight / pageHeight));
+      const requiredHeight = pageCount * pageHeight;
+
+      host.style.height = `${requiredHeight}px`;
+      page.style.minHeight = `${requiredHeight}px`;
+
+      host.innerHTML = '';
+
+      // APP FITXES - FEATURE - PAGE NUMBERING
+      // Reutiliza el mismo cálculo aproximado de páginas que ya usa la marca de agua
+      // (única fuente de "cuántas páginas" disponible, ya que la paginación es del navegador).
+      const numberHost = page.querySelector('.print-page-numbers');
+      if (numberHost) {
+        numberHost.style.height = `${requiredHeight}px`;
+        numberHost.innerHTML = '';
+      }
+
+      for (let index = 0; index < pageCount; index += 1) {
+        const pageLayer = document.createElement('div');
+        pageLayer.className = 'print-watermark-page';
+        pageLayer.style.top = `${index * pageHeight}px`;
+        pageLayer.style.height = `${pageHeight}px`;
+
+        const mark = document.createElement('img');
+        mark.className = 'print-watermark';
+        mark.src = 'logo_romero_polo.png';
+        mark.alt = '';
+        pageLayer.appendChild(mark);
+        host.appendChild(pageLayer);
+
+        if (numberHost) {
+          const numberSlot = document.createElement('div');
+          numberSlot.className = 'print-page-number-slot';
+          numberSlot.style.top = `${index * pageHeight}px`;
+          numberSlot.style.height = `${pageHeight}px`;
+
+          const badge = document.createElement('div');
+          badge.className = 'rp-page-number';
+          badge.textContent = `${index + 1}/${pageCount}`;
+          numberSlot.appendChild(badge);
+          numberHost.appendChild(numberSlot);
+        }
+      }
+    }
+
+    function collectFieldStates(root) {
+      if (!root) return [];
+      return Array.from(root.querySelectorAll('input, textarea, select')).map((field) => {
+        if (field instanceof HTMLInputElement) {
+          return {
+            tag: 'input',
+            type: field.type,
+            value: field.type === 'file' ? '' : field.value,
+            checked: field.checked
+          };
+        }
+        if (field instanceof HTMLTextAreaElement) {
+          return {
+            tag: 'textarea',
+            value: field.value
+          };
+        }
+        if (field instanceof HTMLSelectElement) {
+          return {
+            tag: 'select',
+            value: field.value,
+            selectedIndex: field.selectedIndex
+          };
+        }
+        return null;
+      });
+    }
+
+    function createPageSnapshot() {
+      const page = getPageRoot();
+      if (!page) return null;
+
+      const fields = collectFieldStates(page);
+      return {
+        html: page.innerHTML,
+        fields,
+        signature: JSON.stringify({
+          html: page.innerHTML,
+          fields
+        })
+      };
+    }
+
+    function applyFieldStates(root, fieldStates) {
+      if (!root || !Array.isArray(fieldStates)) return;
+
+      const fields = Array.from(root.querySelectorAll('input, textarea, select'));
+      fields.forEach((field, index) => {
+        const state = fieldStates[index];
+        if (!state) return;
+
+        if (field instanceof HTMLInputElement) {
+          if (field.type !== 'file') field.value = state.value || '';
+          field.checked = Boolean(state.checked);
+          return;
+        }
+        if (field instanceof HTMLTextAreaElement) {
+          field.value = state.value || '';
+          return;
+        }
+        if (field instanceof HTMLSelectElement) {
+          field.value = state.value || '';
+          if (typeof state.selectedIndex === 'number') field.selectedIndex = state.selectedIndex;
+        }
+      });
+    }
+
+    function saveUndoSnapshot() {
+      const snapshot = createPageSnapshot();
+      if (!snapshot) return;
+
+      const stack = window.__techUndoStack || (window.__techUndoStack = []);
+      if (stack[stack.length - 1]?.signature === snapshot.signature) return;
+      stack.push(snapshot);
+      if (stack.length > MAX_UNDO_STEPS) stack.shift();
+    }
+
+    function wirePhotoBlock(wrapper) {
+      if (!wrapper) return;
+
+      const img = wrapper.querySelector('img');
+      const input = wrapper.querySelector('input[type="file"]');
+      const buttons = wrapper.querySelectorAll('.photo-actions button');
+      const selectBtn = buttons[0];
+      const clearBtn = buttons[1];
+
+      function setImage(dataUrl) {
+        img.src = dataUrl;
+        img.style.display = 'block';
+        wrapper.classList.add('is-filled');
+      }
+
+      function clearImage() {
+        saveUndoSnapshot();
+        img.src = '';
+        img.style.display = 'none';
+        wrapper.classList.remove('is-filled');
+        if (input) input.value = '';
+      }
+
+      if (selectBtn) selectBtn.onclick = () => input && input.click();
+      if (clearBtn) clearBtn.onclick = clearImage;
+
+      if (input) {
+        input.onchange = () => {
+          const file = input.files && input.files[0];
+          if (!file) return;
+          saveUndoSnapshot();
+          const reader = new FileReader();
+          reader.onload = () => {
+            if (typeof reader.result === 'string') setImage(reader.result);
+          };
+          reader.readAsDataURL(file);
+        };
+      }
+
+      wrapper.ondblclick = () => input && input.click();
+    }
+
+    function restoreUndoSnapshot() {
+      const stack = window.__techUndoStack || [];
+      if (!stack.length) return false;
+
+      const page = getPageRoot();
+      if (!page) return false;
+
+      const snapshot = stack.pop();
+      page.innerHTML = snapshot.html;
+      applyFieldStates(page, snapshot.fields);
+      page.querySelectorAll('textarea').forEach((el) => autoGrowTextarea(el));
+      page.querySelectorAll('[data-photo]').forEach((el) => wirePhotoBlock(el));
+
+      window.__activeTechGroup = null;
+      window.__activeTechRow = null;
+      window.__activeTechRowAnchor = null;
+      window.__activeTechPhoto = null;
+
+      const firstGroup = document.querySelector('[data-group]');
+      if (firstGroup) setActiveGroup(firstGroup);
+      refreshPrintWatermarks();
+      refreshPrintWatermarks();
+      return true;
+    }
+
+    const TEC_CODIGOS_INTERNOS_STORAGE_KEY = "fichaTecnicaCodigosInternos";
+
+    function leerCodigosTecnicosGuardados() {
+      try {
+        return JSON.parse(localStorage.getItem(TEC_CODIGOS_INTERNOS_STORAGE_KEY) || "{}") || {};
+      } catch (_) {
+        return {};
+      }
+    }
+
+    function guardarCodigosTecnicosGuardados(codigos) {
+      try {
+        localStorage.setItem(TEC_CODIGOS_INTERNOS_STORAGE_KEY, JSON.stringify(codigos || {}));
+      } catch (_) {}
+    }
+
+    function getMaquinariaTecnica() {
+      const base = (typeof maquinaria === "undefined" || !maquinaria) ? {} : maquinaria;
+      return { ...base, ...leerCodigosTecnicosGuardados() };
+    }
+
+    function obtenerDatosTecnicosActuales() {
+      const marcaModelo = String(document.getElementById("tec_marcaModelo")?.value || "").trim();
+      const marca = String(document.getElementById("tec_marca")?.value || "").trim();
+      const modelo = String(document.getElementById("tec_modelo")?.value || "").trim();
+      const marcaModeloCalculado = marcaModelo || [marca, modelo].filter(Boolean).join(" ");
+
+      return {
+        maquina: String(document.getElementById("tec_tipoMaquina")?.value || "").trim(),
+        marcaModelo: marcaModeloCalculado,
+        bastidor: String(document.getElementById("tec_serie")?.value || "").trim(),
+        matricula: String(document.getElementById("tec_matricula")?.value || "").trim()
+      };
+    }
+
+    function guardarCodigoTecnicoSiEsNuevo() {
+      const input = document.getElementById("tec_codigoInterno");
+      const codigo = String(input?.value || "").trim();
+      if (!codigo) return false;
+
+      const base = (typeof maquinaria === "undefined" || !maquinaria) ? {} : maquinaria;
+      const guardados = leerCodigosTecnicosGuardados();
+      if (base[codigo]) return false;
+
+      guardados[codigo] = { ...(guardados[codigo] || {}), ...obtenerDatosTecnicosActuales() };
+      guardarCodigosTecnicosGuardados(guardados);
+      rellenarSelectCodigo(input);
+      return true;
+    }
+
+    function rellenarSelectCodigo(input) {
+      const list = document.getElementById("tec_codigoInternoList");
+      if (!list) return;
+      const select = list;
+
+      select.innerHTML = '<option value="">Seleccionar código</option>';
+
+      list.innerHTML = "";
+      const datosMaquinaria = getMaquinariaTecnica();
+
+      Object.keys(datosMaquinaria).sort().forEach(codigo => {
+        const option = document.createElement("option");
+        option.value = codigo;
+        list.appendChild(option);
+      });
+    }
+
+    function rellenarTecnicaDesdeCodigo() {
+      saveUndoSnapshot();
+      const codigo = String(document.getElementById("tec_codigoInterno")?.value || "").trim();
+      const datosMaquinaria = getMaquinariaTecnica();
+      if (!codigo) return;
+      if (!datosMaquinaria[codigo]) {
+        guardarCodigoTecnicoSiEsNuevo();
+        return;
+      }
+
+      document.getElementById("tec_tipoMaquina").value = datosMaquinaria[codigo].maquina || "";
+      const marcaModeloRaw = (datosMaquinaria[codigo].marcaModelo || "").trim();
+      document.getElementById("tec_marcaModelo").value = marcaModeloRaw;
+
+      // Prefill "Características generales" where possible
+      const marcaEl = document.getElementById("tec_marca");
+      const modeloEl = document.getElementById("tec_modelo");
+      if (marcaEl || modeloEl) {
+        const normalized = marcaModeloRaw.replace(/\s+/g, ' ').trim();
+        let marca = '';
+        let modelo = '';
+
+        if (normalized.includes(' - ')) {
+          const [left, ...rest] = normalized.split(' - ');
+          marca = (left || '').trim();
+          modelo = rest.join(' - ').trim();
+        } else if (normalized.includes('-')) {
+          const [left, ...rest] = normalized.split('-');
+          marca = (left || '').trim();
+          modelo = rest.join('-').trim();
+        } else {
+          const parts = normalized.split(' ').filter(Boolean);
+          marca = parts.slice(0, 1).join(' ');
+          modelo = parts.slice(1).join(' ');
+        }
+
+        if (marcaEl) marcaEl.value = marca;
+        if (modeloEl) modeloEl.value = modelo || marcaModeloRaw;
+      }
+
+      const serieEl = document.getElementById("tec_serie");
+      if (serieEl) serieEl.value = datosMaquinaria[codigo].bastidor || "";
+
+      // Campo bastidor eliminado del primer recuadro
+
+      const matriculaEl = document.getElementById("tec_matricula");
+      if (matriculaEl) matriculaEl.value = datosMaquinaria[codigo].matricula || "";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const materials = getMaterialsGroup();
+      if (materials) materials.parentNode.appendChild(materials);
+      const tecSelect = document.getElementById("tec_codigoInterno");
+      rellenarSelectCodigo(tecSelect);
+
+      ["tec_codigoInterno", "tec_tipoMaquina", "tec_marcaModelo", "tec_marca", "tec_modelo", "tec_serie", "tec_matricula"].forEach((id) => {
+        const field = document.getElementById(id);
+        if (!field) return;
+        field.addEventListener("change", () => guardarCodigoTecnicoSiEsNuevo());
+      });
+
+      const firstGroup = document.querySelector('[data-group]');
+      if (firstGroup) setActiveGroup(firstGroup);
+
+      document.addEventListener('mousedown', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const row = target.closest('[data-rows] tr');
+        if (!row) return;
+
+        const isEditableField = Boolean(target.closest('input, textarea, select, [contenteditable="true"]'));
+        const isModifiedSelection = event.ctrlKey || event.metaKey || event.shiftKey;
+
+        const group = target.closest('[data-group]');
+        if (group && group !== getActiveGroup()) setActiveGroup(group);
+
+        if (isModifiedSelection) {
+          window.__rowDragSelection = {
+            tbody: row.closest('[data-rows]'),
+            anchor: row
+          };
+          document.body.classList.add('is-row-dragging');
+          setActiveRow(row, event);
+          event.preventDefault();
+          return;
+        }
+
+        if (isEditableField) {
+          setActiveRow(row, event);
+          window.__rowDragSelection = null;
+          document.body.classList.remove('is-row-dragging');
+          return;
+        }
+
+        window.__rowDragSelection = {
+          tbody: row.closest('[data-rows]'),
+          anchor: row
+        };
+        document.body.classList.add('is-row-dragging');
+        setActiveRow(row, event);
+        event.preventDefault();
+      }, true);
+
+      document.addEventListener('mouseover', (event) => {
+        const dragState = window.__rowDragSelection;
+        if (!dragState || !dragState.tbody) return;
+
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const row = target.closest('[data-rows] tr');
+        if (!row || !dragState.tbody.contains(row)) return;
+
+        setDraggedRowsSelection(dragState.tbody, dragState.anchor, row);
+      }, true);
+
+      document.addEventListener('mouseup', () => {
+        window.__rowDragSelection = null;
+        document.body.classList.remove('is-row-dragging');
+      }, true);
+
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const trigger = target.closest('[data-menu-trigger]');
+        if (trigger) {
+          const menu = trigger.closest('[data-menu]');
+          if (menu) {
+            toggleMenu(menu);
+          }
+          return;
+        }
+
+        // Close menus on outside click
+        if (!target.closest('[data-menu]')) closeAllMenus();
+
+        const group = target.closest('[data-group]');
+        if (group && group !== getActiveGroup()) setActiveGroup(group);
+
+        const row = target.closest('[data-rows] tr');
+        if (row && !(event.ctrlKey || event.metaKey || event.shiftKey)) setActiveRow(row, event);
+
+        const photo = target.closest('[data-photo]');
+        if (photo) setActivePhoto(photo);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeAllMenus();
+
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
+          if (restoreUndoSnapshot()) event.preventDefault();
+          return;
+        }
+
+        if (event.key !== 'Delete' && event.key !== 'Del') return;
+
+        const target = event.target;
+        const isEditingField = target instanceof HTMLInputElement
+          || target instanceof HTMLTextAreaElement
+          || target instanceof HTMLSelectElement;
+        if (isEditingField) return;
+
+        const group = getActiveGroup();
+        if (!group) return;
+
+        if (target instanceof Element && target.closest('[contenteditable="true"]')) return;
+        removeActiveRow();
+
+        event.preventDefault();
+      });
+
+      document.addEventListener('focusin', (event) => {
+        const target = event.target;
+        if (target instanceof Element) {
+          const group = target.closest('[data-group]');
+          if (group && group !== getActiveGroup()) setActiveGroup(group);
+          const row = target.closest('[data-rows] tr');
+          if (row && row !== getActiveRow()) setActiveRow(row);
+        }
+        if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement)) return;
+        window.__pendingFieldUndoSnapshot = createPageSnapshot();
+      });
+
+      document.addEventListener('input', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement)) return;
+        if (!window.__pendingFieldUndoSnapshot) return;
+
+        const stack = window.__techUndoStack || (window.__techUndoStack = []);
+        const snapshot = window.__pendingFieldUndoSnapshot;
+        if (snapshot && stack[stack.length - 1]?.signature !== snapshot.signature) {
+          stack.push(snapshot);
+          if (stack.length > MAX_UNDO_STEPS) stack.shift();
+        }
+        window.__pendingFieldUndoSnapshot = null;
+        refreshPrintWatermarks();
+      }, true);
+
+      document.addEventListener('change', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLSelectElement)) return;
+        if (!window.__pendingFieldUndoSnapshot) return;
+
+        const stack = window.__techUndoStack || (window.__techUndoStack = []);
+        const snapshot = window.__pendingFieldUndoSnapshot;
+        if (snapshot && stack[stack.length - 1]?.signature !== snapshot.signature) {
+          stack.push(snapshot);
+          if (stack.length > MAX_UNDO_STEPS) stack.shift();
+        }
+        window.__pendingFieldUndoSnapshot = null;
+        refreshPrintWatermarks();
+      }, true);
+    });
+
+    function closeAllMenus() {
+      document.querySelectorAll('[data-menu].is-open').forEach((menu) => menu.classList.remove('is-open'));
+    }
+
+    function toggleMenu(menuEl) {
+      const isOpen = menuEl.classList.contains('is-open');
+      closeAllMenus();
+      if (!isOpen) menuEl.classList.add('is-open');
+    }
+
+    function setActiveGroup(groupEl) {
+      document.querySelectorAll('[data-group]').forEach((el) => el.classList.remove('is-active'));
+      groupEl.classList.add('is-active');
+      window.__activeTechGroup = groupEl;
+
+      // Reset row selection when switching groups
+      window.__activeTechRow = null;
+      window.__activeTechRowAnchor = null;
+      document.querySelectorAll('[data-rows] tr').forEach((tr) => {
+        tr.classList.remove('is-active-row');
+        tr.classList.remove('is-selected-row');
+      });
+
+      // Reset photo selection when switching groups
+      window.__activeTechPhoto = null;
+      document.querySelectorAll('[data-photo]').forEach((el) => el.classList.remove('is-active-photo'));
+    }
+
+    function getActiveGroup() {
+      const active = (window.__activeTechGroup?.isConnected ? window.__activeTechGroup : null) || document.querySelector('[data-group].is-active') || document.querySelector('[data-group]');
+      return active || null;
+    }
+
+    function clearRowSelection(tbody) {
+      if (!tbody) return;
+      tbody.querySelectorAll('tr').forEach((tr) => tr.classList.remove('is-selected-row'));
+    }
+
+    function getSelectedRows(tbody) {
+      if (!tbody) return [];
+      return Array.from(tbody.querySelectorAll('tr.is-selected-row'));
+    }
+
+    function setDraggedRowsSelection(tbody, anchorRow, currentRow) {
+      if (!tbody || !anchorRow || !currentRow) return;
+
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const start = rows.indexOf(anchorRow);
+      const end = rows.indexOf(currentRow);
+      if (start < 0 || end < 0) return;
+
+      clearRowSelection(tbody);
+      const [from, to] = start <= end ? [start, end] : [end, start];
+      rows.slice(from, to + 1).forEach((tr) => tr.classList.add('is-selected-row'));
+      tbody.querySelectorAll('tr').forEach((tr) => tr.classList.remove('is-active-row'));
+      currentRow.classList.add('is-active-row');
+      window.__activeTechRow = currentRow;
+      window.__activeTechRowAnchor = anchorRow;
+    }
+
+    function getRowsForAction(tbody) {
+      if (!tbody) return [];
+      const selectedRows = getSelectedRows(tbody);
+      if (selectedRows.length) return selectedRows;
+
+      const activeRow = getActiveRow();
+      if (activeRow && tbody.contains(activeRow)) return [activeRow];
+
+      return tbody.lastElementChild ? [tbody.lastElementChild] : [];
+    }
+
+    function setActiveRow(rowEl, event) {
+      const group = getActiveGroup();
+      if (!group) return;
+      const tbody = group.querySelector('[data-rows]');
+      if (!tbody || !tbody.contains(rowEl)) return;
+
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isMultiToggle = Boolean(event && (event.ctrlKey || event.metaKey));
+      const isRangeSelect = Boolean(event && event.shiftKey);
+
+      tbody.querySelectorAll('tr').forEach((tr) => tr.classList.remove('is-active-row'));
+
+      if (isRangeSelect && window.__activeTechRowAnchor && tbody.contains(window.__activeTechRowAnchor)) {
+        clearRowSelection(tbody);
+        const start = rows.indexOf(window.__activeTechRowAnchor);
+        const end = rows.indexOf(rowEl);
+        if (start >= 0 && end >= 0) {
+          const [from, to] = start <= end ? [start, end] : [end, start];
+          rows.slice(from, to + 1).forEach((tr) => tr.classList.add('is-selected-row'));
+        }
+      } else if (isMultiToggle) {
+        rowEl.classList.toggle('is-selected-row');
+      } else {
+        clearRowSelection(tbody);
+        rowEl.classList.add('is-selected-row');
+        window.__activeTechRowAnchor = rowEl;
+      }
+
+      rowEl.classList.add('is-active-row');
+      window.__activeTechRow = rowEl;
+      if (!isRangeSelect && !isMultiToggle) {
+        window.__activeTechRowAnchor = rowEl;
+      }
+      if (isMultiToggle && rowEl.classList.contains('is-selected-row')) {
+        window.__activeTechRowAnchor = rowEl;
+      }
+    }
+
+    function setActivePhoto(photoEl) {
+      document.querySelectorAll('[data-photo]').forEach((el) => el.classList.remove('is-active-photo'));
+      photoEl.classList.add('is-active-photo');
+      window.__activeTechPhoto = photoEl;
+    }
+
+    function getActivePhoto() {
+      const selected = window.__activeTechPhoto || document.querySelector('[data-photo].is-active-photo');
+      return selected || null;
+    }
+
+    function getActiveRow() {
+      const group = getActiveGroup();
+      if (!group) return null;
+      const tbody = group.querySelector('[data-rows]');
+      if (!tbody) return null;
+      const row = window.__activeTechRow && tbody.contains(window.__activeTechRow) ? window.__activeTechRow : tbody.querySelector('tr.is-active-row');
+      return row || null;
+    }
+
+    function addGroup() {
+      saveUndoSnapshot();
+      const container = document.getElementById('tec-groups');
+      if (!container) return;
+
+      const name = (window.prompt('Nombre del grupo (ej.: Motor, Dimensiones, Hidráulico...)', 'Motor') || '').trim();
+      const title = name ? name.toUpperCase() : 'NUEVO GRUPO';
+
+      const table = document.createElement('table');
+      table.className = 'no-page-break group';
+      table.setAttribute('data-group', '');
+      table.innerHTML = `
+        <tr><td class="section-title" contenteditable="true" spellcheck="false">${escapeHtmlLite(title)}</td></tr>
+        <tr>
+          <td>
+            <table style="margin:0;border:none;">
+              <tbody data-rows>
+                <tr>
+                  <th style="width:35%;"><textarea class="kv-key-input autogrow" rows="1" placeholder="Característica"></textarea></th>
+                  <td><textarea class="autogrow" rows="1" placeholder="Valor"></textarea></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      `;
+
+      const activeGroup = getActiveGroup();
+      const materials = getMaterialsGroup();
+      const groups = Array.from(container.querySelectorAll('[data-group]'));
+      if (materials && (!activeGroup || groups.indexOf(activeGroup) >= groups.indexOf(materials))) {
+        container.insertBefore(table, materials);
+      } else if (activeGroup && container.contains(activeGroup)) {
+        const next = activeGroup.nextSibling;
+        if (next) container.insertBefore(table, next);
+        else container.appendChild(table);
+      } else {
+        container.appendChild(table);
+      }
+      setActiveGroup(table);
+      refreshPrintWatermarks();
+    }
+
+    function moveActiveGroup(direction) {
+      const group = getActiveGroup();
+      if (!group) return;
+      const container = group.parentNode;
+      const groups = Array.from(container.querySelectorAll('[data-group]'));
+      const target = groups[groups.indexOf(group) + direction];
+      if (!target) return;
+      saveUndoSnapshot();
+      container.insertBefore(group, direction < 0 ? target : target.nextSibling);
+      refreshPrintWatermarks();
+      group.scrollIntoView({ block: 'nearest' });
+    }
+
+    function addRowToActiveGroup() {
+      saveUndoSnapshot();
+      const group = getActiveGroup();
+      if (!group) return;
+
+      const tbody = group.querySelector('[data-rows]');
+      if (!tbody) return;
+
+      const kind = group.getAttribute('data-group-kind') || 'keyvalue';
+      const row = kind === 'materials' ? createMaterialsPasteRow() : createKeyValuePasteRow();
+      const activeRow = getActiveRow();
+      tbody.insertBefore(row, activeRow ? activeRow.nextSibling : null);
+      setActiveRow(row);
+      row.querySelector('textarea')?.focus();
+      refreshPrintWatermarks();
+    }
+
+    function removeActiveRow() {
+      saveUndoSnapshot();
+      const group = getActiveGroup();
+      if (!group) return;
+
+      const tbody = group.querySelector('[data-rows]');
+      if (!tbody) return;
+
+      const rowsToRemove = getRowsForAction(tbody);
+      if (!rowsToRemove.length) return;
+      const fallback = rowsToRemove[0].previousElementSibling || rowsToRemove[rowsToRemove.length - 1].nextElementSibling;
+      rowsToRemove.forEach((row) => row.remove());
+      window.__activeTechRow = null;
+      window.__activeTechRowAnchor = null;
+      if (fallback?.isConnected) setActiveRow(fallback);
+      refreshPrintWatermarks();
+    }
+
+    function getMaterialsGroup() {
+      return document.querySelector('[data-group-kind="materials"]');
+    }
+
+    function removeActiveGroup() {
+      const container = document.getElementById('tec-groups');
+      if (!container) return;
+
+      const group = getActiveGroup();
+      if (!group) return;
+
+      const groups = container.querySelectorAll('[data-group]');
+      if (groups.length <= 1) {
+        alert('Debe existir al menos 1 grupo.');
+        return;
+      }
+
+      const ok = window.confirm('¿Eliminar el grupo seleccionado?');
+      if (!ok) return;
+      saveUndoSnapshot();
+
+      const groupList = Array.from(groups);
+      const next = groupList[groupList.indexOf(group) + 1] || groupList[groupList.indexOf(group) - 1];
+      group.remove();
+      window.__activeTechGroup = null;
+      window.__activeTechRow = null;
+      if (next) setActiveGroup(next);
+      else {
+        const first = container.querySelector('[data-group]');
+        if (first) setActiveGroup(first);
+      }
+      refreshPrintWatermarks();
+    }
+
+    function addPhotoBeforeActiveGroup() {
+      saveUndoSnapshot();
+      const group = getActiveGroup();
+      if (!group) return;
+
+      const block = createPhotoBlock();
+      group.parentNode.insertBefore(block, group);
+      setActivePhoto(block);
+      refreshPrintWatermarks();
+    }
+
+    function createPhotoBlock() {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'foto-maquina';
+      wrapper.setAttribute('data-photo', '');
+
+      wrapper.innerHTML = `
+        <div class="photo-placeholder">Espacio para imagen de la máquina (insertar antes de imprimir)</div>
+        <img alt="" style="display:none;">
+        <input type="file" accept="image/*" style="display:none;" />
+        <div class="photo-actions">
+          <button type="button">Seleccionar imagen</button>
+          <button type="button">Quitar imagen</button>
+        </div>
+      `;
+
+      wirePhotoBlock(wrapper);
+      return wrapper;
+    }
+
+    function removeActivePhoto() {
+      const photo = getActivePhoto();
+      if (!photo) {
+        alert('Selecciona una imagen para eliminar (haz click sobre el recuadro de la foto).');
+        return;
+      }
+
+      const ok = window.confirm('¿Eliminar la imagen seleccionada?');
+      if (!ok) return;
+      saveUndoSnapshot();
+
+      photo.remove();
+      window.__activeTechPhoto = null;
+      const remaining = document.querySelector('[data-photo]');
+      if (remaining) setActivePhoto(remaining);
+      refreshPrintWatermarks();
+    }
+
+    function escapeHtmlLite(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    function autoGrowTextarea(textarea) {
+      if (!textarea) return;
+      textarea.style.height = 'auto';
+      textarea.style.height = Math.max(28, textarea.scrollHeight) + 'px';
+    }
+
+    function createKeyValuePasteRow() {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+                  <th style="width:35%;"><textarea class="kv-key-input autogrow" rows="1" placeholder="CaracterÃ­stica"></textarea></th>
+                  <td><textarea class="autogrow" rows="1" placeholder="Valor"></textarea></td>
+      `;
+      return row;
+    }
+
+    function createMaterialsPasteRow() {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>
+          <textarea class="material-tipo texto-operacion" placeholder="Filtro / material"></textarea>
+        </td>
+        <td>
+          <textarea class="autogrow cantidad-unidad" rows="1" placeholder="Cantidad / unidad"></textarea>
+        </td>
+      `;
+      return row;
+    }
+
+    function getEditableCells(row) {
+      if (!row) return [];
+      return Array.from(row.querySelectorAll('input, textarea, select'));
+    }
+
+    function getCellCopyValue(cell) {
+      if (!cell) return '';
+      const field = cell.querySelector('input, textarea, select');
+      if (field instanceof HTMLInputElement) {
+        if (field.type === 'checkbox' || field.type === 'radio') return field.checked ? 'SI' : '';
+        return field.value || '';
+      }
+      if (field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement) return field.value || '';
+      return String(cell.textContent || '').trim();
+    }
+
+    function serializeSelectedTechnicalRows() {
+      const group = getActiveGroup();
+      const tbody = group ? group.querySelector('[data-rows]') : null;
+      if (!tbody) return '';
+      const rows = getRowsForAction(tbody).filter((row) => row && tbody.contains(row));
+      if (!rows.length) return '';
+      return rows.map((row) => Array.from(row.children).map(getCellCopyValue).join('\t')).join('\n');
+    }
+
+    function getRowColumnIndex(field) {
+      const row = field.closest('tr');
+      if (!row) return -1;
+      return getEditableCells(row).indexOf(field);
+    }
+
+    function ensurePasteTargetRow(tbody, kind, rowIndex) {
+      while (tbody.children.length <= rowIndex) {
+        tbody.appendChild(kind === 'materials' ? createMaterialsPasteRow() : createKeyValuePasteRow());
+      }
+      return tbody.children[rowIndex];
+    }
+
+    function normalizeClipboardTable(text) {
+      return String(text || '')
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n')
+        .split('\n')
+        .map((line) => line.split('\t').map((cell) => cell.trim()))
+        .filter((cells) => cells.some((cell) => cell !== ''));
+    }
+
+    function applyBulkPaste(field, text) {
+      const row = field.closest('tr');
+      const tbody = field.closest('[data-rows]');
+      const group = field.closest('[data-group]');
+      if (!row || !tbody || !group) return false;
+
+      const grid = normalizeClipboardTable(text);
+      const hasMatrixShape = grid.length > 1 || grid.some((cells) => cells.length > 1);
+      if (!hasMatrixShape) return false;
+
+      saveUndoSnapshot();
+      const kind = group.getAttribute('data-group-kind') || 'keyvalue';
+      const startRowIndex = Array.from(tbody.children).indexOf(row);
+      const startColumnIndex = Math.max(0, getRowColumnIndex(field));
+      if (startRowIndex < 0 || startColumnIndex < 0) return false;
+
+      grid.forEach((cells, rowOffset) => {
+        const targetRow = ensurePasteTargetRow(tbody, kind, startRowIndex + rowOffset);
+        const editableCells = getEditableCells(targetRow);
+        cells.forEach((value, columnOffset) => {
+          const targetField = editableCells[startColumnIndex + columnOffset];
+          if (!targetField) return;
+          targetField.value = value;
+          if (targetField.tagName === 'TEXTAREA') {
+            autoGrowTextarea(targetField);
+          }
+        });
+      });
+
+      const lastRow = ensurePasteTargetRow(tbody, kind, startRowIndex + grid.length - 1);
+      setActiveGroup(group);
+      setActiveRow(lastRow);
+      refreshPrintWatermarks();
+      return true;
+    }
+
+    document.addEventListener('input', (event) => {
+      const target = event.target;
+      if (target && target.tagName === 'TEXTAREA') {
+        autoGrowTextarea(target);
+      }
+      if (target instanceof HTMLElement && target.matches('.section-title[contenteditable="true"]')) {
+        refreshPrintWatermarks();
+      }
+    });
+
+    document.addEventListener('paste', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement)) return;
+      if (!target.closest('[data-rows]')) return;
+
+      const text = event.clipboardData && event.clipboardData.getData('text/plain');
+      if (!text) return;
+
+      if (applyBulkPaste(target, text)) {
+        event.preventDefault();
+      }
+    });
+
+    document.addEventListener('copy', (event) => {
+      const selection = window.getSelection ? String(window.getSelection() || '') : '';
+      if (selection.trim()) return;
+      const text = serializeSelectedTechnicalRows();
+      if (!text) return;
+      event.clipboardData.setData('text/plain', text);
+      event.preventDefault();
+    });
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('textarea').forEach((el) => autoGrowTextarea(el));
+      document.querySelectorAll('[data-photo]').forEach((el) => wirePhotoBlock(el));
+      refreshPrintWatermarks();
+    });
+
+    window.addEventListener('resize', refreshPrintWatermarks);
+    window.addEventListener('beforeprint', refreshPrintWatermarks);
+
+    // Wire all default photo blocks (the ones in the markup)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('[data-photo]').forEach((el) => wirePhotoBlock(el));
+    });
+  </script>
+  <script src="import-chatgpt.js?v=20261016-single-click"></script>
+  <!-- APP FITXES - FEATURE BLOCK 1 - AUTOSAVE -->
+  <script src="autosave.js?v=20261019-pdf-import"></script>
+  <script src="print.js?v=20261016-groups"></script>
+  <script type="module" src="/pdf-import/ui.mjs?v=20261019"></script>
+</body>
+</html>

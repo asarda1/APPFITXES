@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "pages": 5,
+  "motorPage": 2,
+  "longGroupRows": 65,
+  "repeatedHeadings": true,
+  "pageNumbers": true,
+  "bastidorInFirstPage": true,
+  "bastidorPrintedOnce": true
+}

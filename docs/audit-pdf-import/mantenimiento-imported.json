@@ -1,0 +1,195 @@
+{
+  "mantenimiento": "1.500h",
+  "maquina": {
+    "tipoMaquina": "EXCAVADORA",
+    "marcaModelo": "ROMERO POLO\nTEST",
+    "codigoInterno": "PDF-MAN-001",
+    "matricula": "5678 DEF",
+    "bastidorSerie": "VIN-MAN-2026",
+    "horasTrabajoKilometros": "12.345 h"
+  },
+  "operaciones": [
+    {
+      "descripcion": "OPERACIÓN 0\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 1\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 2\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 3\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 4\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 5\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 6\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 7\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 8\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 9\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 10\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 11\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 12\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 13\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 14\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 15\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 16\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 17\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 18\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 19\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 20\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 21\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 22\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 23\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 24\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 25\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 26\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 27\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 28\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 29\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 30\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 31\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 32\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 33\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 34\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 35\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 36\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 37\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 38\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 39\nDetalle de la revisión",
+      "realizada": false
+    },
+    {
+      "descripcion": "OPERACIÓN 40\nDetalle de la revisión",
+      "realizada": true
+    },
+    {
+      "descripcion": "OPERACIÓN 41\nDetalle de la revisión",
+      "realizada": false
+    }
+  ],
+  "filtrosMateriales": [
+    {
+      "tipo": "FILTRO AIRE",
+      "cantidadUnidad": "1 unidad"
+    },
+    {
+      "tipo": "ACEITE MOTOR",
+      "cantidadUnidad": "25 L"
+    }
+  ],
+  "observacionesGenerales": "OBSERVACIÓN DEL PDF\nSegunda línea",
+  "responsable": "RESPONSABLE DEL PDF",
+  "fecha": "2026-10-19",
+  "firma": "data:image/png;base64,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"
+}

@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "Editor accessible inside the application",
+    "Unified row controls work for materials and general characteristics",
+    "Bastidor in header survives reload without duplicates; clear controls removed",
+    "Added rows and manual group order survive reload and recovery",
+    "Generated real Chromium PDF with normal and oversized groups",
+    "No JavaScript runtime errors"
+  ],
+  "errors": []
+}
